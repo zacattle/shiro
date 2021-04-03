@@ -31,6 +31,8 @@ import java.util.Comparator;
  * When both objects being compared are TypedEventListeners, they are ordered according to the rules of the
  * {@link EventClassComparator}, using the TypedEventListeners'
  * {@link TypedEventListener#getEventType() eventType}.
+ * 
+ * 事件监听器 EventListener 比较器
  *
  * @since 1.3
  */

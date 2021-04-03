@@ -18,22 +18,6 @@
  */
 package org.apache.shiro.ini;
 
-import org.apache.shiro.config.ConfigurationException;
-import org.apache.shiro.config.Ini;
-import org.apache.shiro.config.ogdl.ReflectionBuilder;
-import org.apache.shiro.mgt.DefaultSecurityManager;
-import org.apache.shiro.mgt.RealmSecurityManager;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.Realm;
-import org.apache.shiro.realm.RealmFactory;
-import org.apache.shiro.realm.text.IniRealm;
-import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.lang.util.Factory;
-import org.apache.shiro.lang.util.LifecycleUtils;
-import org.apache.shiro.lang.util.Nameable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -41,9 +25,25 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.config.ConfigurationException;
+import org.apache.shiro.config.Ini;
+import org.apache.shiro.config.ogdl.ReflectionBuilder;
+import org.apache.shiro.lang.util.Factory;
+import org.apache.shiro.lang.util.LifecycleUtils;
+import org.apache.shiro.lang.util.Nameable;
+import org.apache.shiro.mgt.DefaultSecurityManager;
+import org.apache.shiro.mgt.RealmSecurityManager;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
+import org.apache.shiro.realm.RealmFactory;
+import org.apache.shiro.realm.text.IniRealm;
+import org.apache.shiro.util.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A {@link Factory} that creates {@link SecurityManager} instances based on {@link Ini} configuration.
- *
+ * 通过 {@link Ini}配置文件加载配置信息的 SecurityManager 工厂类
  * @since 1.0
  * @deprecated use Shiro's {@code Environment} mechanisms instead.
  */
@@ -247,6 +247,7 @@ public class IniSecurityManagerFactory extends IniFactorySupport<SecurityManager
      * Returns {@code true} if the Ini contains account data and a {@code Realm} should be implicitly
      * {@link #createRealm(Ini) created} to reflect the account data, {@code false} if no realm should be implicitly
      * created.
+     * Ini配置包含账户信息，{@code Realm}应该同时被创建，反之则不用创建
      *
      * @param ini the Ini instance to inspect for account data resulting in an implicitly created realm.
      * @return {@code true} if the Ini contains account data and a {@code Realm} should be implicitly

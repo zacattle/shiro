@@ -32,6 +32,7 @@ import java.util.List;
  * For example, the {@link AnnotationEventListenerResolver AnnotationEventListenerResolver} will inspect a runtime
  * object for {@link org.apache.shiro.event.Subscribe Subscribe}-annotated methods, and for each method found, return
  * an {@link EventListener} instance representing the method to invoke.
+ * 得到 EventListener集合
  *
  * @see AnnotationEventListenerResolver
  * @see SingleArgumentMethodEventListener

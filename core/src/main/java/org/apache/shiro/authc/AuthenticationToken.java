@@ -51,6 +51,8 @@ import java.io.Serializable;
  * (<tt>Callback</tt> is just a marker interface, and of little use).  We
  * also think the name <em>AuthenticationToken</em> more accurately reflects its true purpose
  * in a login framework, whereas <em>Callback</em> is less obvious.
+ * 
+ * 认证信息
  *
  * @see RememberMeAuthenticationToken
  * @see HostAuthenticationToken

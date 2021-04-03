@@ -18,17 +18,17 @@
  */
 package org.apache.shiro.lang.util;
 
+import java.util.Collection;
+
 import org.apache.shiro.lang.ShiroException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
 
 
 /**
  * Utility class to help call {@link org.apache.shiro.lang.util.Initializable#init() Initializable.init()} and
  * {@link org.apache.shiro.lang.util.Destroyable#destroy() Destroyable.destroy()} methods cleanly on any object.
- *
+ * 生命周期函数回调工具类
  * @since 0.2
  */
 public abstract class LifecycleUtils {

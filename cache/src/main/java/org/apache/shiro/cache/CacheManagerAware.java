@@ -24,6 +24,7 @@ package org.apache.shiro.cache;
  *
  * <p>This is used so internal security components that use a CacheManager can be injected with it instead of having
  * to create one on their own.
+ * CacheManager自动装配
  *
  * @since 0.9
  */

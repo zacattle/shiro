@@ -20,7 +20,7 @@ package org.apache.shiro.lang.util;
 
 /**
  * Shiro container-agnostic interface that indicates that this object requires a callback during destruction.
- *
+ * 生命周期接口 摧毁时回调
  * @since 0.2
  */
 public interface Destroyable {

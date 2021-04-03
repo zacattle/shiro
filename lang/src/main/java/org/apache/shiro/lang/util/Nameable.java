@@ -22,6 +22,7 @@ package org.apache.shiro.lang.util;
 /**
  * Interface implemented by components that can be named, such as via configuration, and wish to have that name
  * set once it has been configured.
+ * 强制命名接口
  *
  * @since 0.9
  */

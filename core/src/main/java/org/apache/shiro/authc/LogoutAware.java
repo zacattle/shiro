@@ -27,6 +27,7 @@ import org.apache.shiro.subject.PrincipalCollection;
  *
  * <p>All of Shiro's concrete Realm implementations implement this interface as a convenience for those wishing
  * to subclass them.
+ * 生命周期接口，退出时回调，可作为spi接口
  *
  * @since 0.9
  */

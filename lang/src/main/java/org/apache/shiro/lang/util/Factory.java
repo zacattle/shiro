@@ -21,7 +21,7 @@ package org.apache.shiro.lang.util;
 /**
  * Generics-aware interface supporting the
  * <a href="http://en.wikipedia.org/wiki/Factory_method_pattern">Factory Method</a> design pattern.
- *
+ * 工厂类
  * @param <T> The type of the instance returned by the Factory implementation.
  * @since 1.0
  */

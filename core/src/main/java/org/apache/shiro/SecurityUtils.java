@@ -25,6 +25,7 @@ import org.apache.shiro.util.ThreadContext;
 
 /**
  * Accesses the currently accessible {@code Subject} for the calling code depending on runtime environment.
+ * 访问当前 {@code Subject}
  *
  * @since 0.2
  */

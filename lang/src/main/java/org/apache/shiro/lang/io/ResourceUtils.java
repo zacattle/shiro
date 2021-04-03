@@ -18,18 +18,18 @@
  */
 package org.apache.shiro.lang.io;
 
-import org.apache.shiro.lang.util.ClassUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import org.apache.shiro.lang.util.ClassUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Static helper methods for loading {@code Stream}-backed resources.
- *
+ * 加载流相关的资源的工具类
  * @see #getInputStreamForPath(String)
  * @since 0.2
  */

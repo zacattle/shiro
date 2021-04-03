@@ -24,7 +24,7 @@ import org.apache.shiro.session.SessionException;
 /**
  * A SessionManager manages the creation, maintenance, and clean-up of all application
  * {@link org.apache.shiro.session.Session Session}s.
- *
+ * 会话管理器
  * @since 0.1
  */
 public interface SessionManager {

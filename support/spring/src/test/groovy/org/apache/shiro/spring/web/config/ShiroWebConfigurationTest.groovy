@@ -18,23 +18,18 @@
  */
 package org.apache.shiro.spring.web.config
 
-import org.apache.shiro.event.EventBus
-import org.apache.shiro.event.support.DefaultEventBus
+import static org.hamcrest.MatcherAssert.assertThat
+import static org.hamcrest.Matchers.*
+import static org.junit.Assert.*
+
 import org.apache.shiro.mgt.SecurityManager
 import org.apache.shiro.mgt.SessionStorageEvaluator
 import org.apache.shiro.realm.text.TextConfigurationRealm
-import org.apache.shiro.spring.config.EventBusTestConfiguration
-import org.apache.shiro.spring.config.RealmTestConfiguration
-import org.apache.shiro.spring.config.ShiroAnnotationProcessorConfiguration
-import org.apache.shiro.spring.config.ShiroBeanConfiguration
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor
 import org.apache.shiro.spring.testconfig.EventBusTestConfiguration
 import org.apache.shiro.spring.testconfig.RealmTestConfiguration
-import org.apache.shiro.web.mgt.CookieRememberMeManager
 import org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator
 import org.apache.shiro.web.mgt.WebSecurityManager
 import org.apache.shiro.web.servlet.Cookie
-
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -44,10 +39,6 @@ import org.springframework.expression.ExpressionParser
 import org.springframework.expression.spel.standard.SpelExpressionParser
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
-
-import static org.hamcrest.MatcherAssert.assertThat
-import static org.hamcrest.Matchers.*
-import static org.junit.Assert.*
 
 /**
  * @since 1.4.0

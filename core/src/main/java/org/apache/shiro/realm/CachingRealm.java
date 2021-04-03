@@ -18,17 +18,17 @@
  */
 package org.apache.shiro.realm;
 
+import java.util.Collection;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.shiro.authc.LogoutAware;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.CacheManagerAware;
+import org.apache.shiro.lang.util.Nameable;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.lang.util.Nameable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -57,6 +57,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
     |    I N S T A N C E   V A R I A B L E S    |
     ============================================*/
     private String name;
+    // 是否支持缓存
     private boolean cachingEnabled;
     private CacheManager cacheManager;
 

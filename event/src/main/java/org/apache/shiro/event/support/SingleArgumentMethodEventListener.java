@@ -23,7 +23,7 @@ import java.lang.reflect.Modifier;
 
 /**
  * A event listener that invokes a target object's method that accepts a single event argument.
- *
+ * 事件监听器，通常为通过检测 Subscribe 注解得到相关参数进行构建
  * @since 1.3
  */
 public class SingleArgumentMethodEventListener implements TypedEventListener {

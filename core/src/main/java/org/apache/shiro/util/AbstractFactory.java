@@ -22,7 +22,7 @@ import org.apache.shiro.lang.util.Factory;
 
 /**
  * TODO - Class JavaDoc
- *
+ * 抽象工厂类 添加是否单例属性
  * @since 1.0
  */
 public abstract class AbstractFactory<T> implements Factory<T> {

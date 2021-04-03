@@ -53,6 +53,8 @@ import org.apache.shiro.authc.AuthenticationToken;
  * <p>Most users will not implement the <tt>Realm</tt> interface directly, but will extend one of the subclasses,
  * {@link org.apache.shiro.realm.AuthenticatingRealm AuthenticatingRealm} or {@link org.apache.shiro.realm.AuthorizingRealm}, greatly reducing the effort requird
  * to implement a <tt>Realm</tt> from scratch.</p>
+ * 
+ * 认证及权限数据获取功能接口
  *
  * @see org.apache.shiro.realm.CachingRealm CachingRealm
  * @see org.apache.shiro.realm.AuthenticatingRealm AuthenticatingRealm
@@ -65,7 +67,7 @@ public interface Realm {
     /**
      * Returns the (application-unique) name assigned to this <code>Realm</code>. All realms configured for a single
      * application must have a unique name.
-     *
+     * 唯一名字
      * @return the (application-unique) name assigned to this <code>Realm</code>.
      */
     String getName();
@@ -77,6 +79,8 @@ public interface Realm {
      * <p>If this method returns <tt>false</tt>, it will not be called to authenticate the Subject represented by
      * the token - more specifically, a <tt>false</tt> return value means this Realm instance's
      * {@link #getAuthenticationInfo} method will not be invoked for that token.
+     * 
+     * 是否能对指定类型的认证信息进行认证
      *
      * @param token the AuthenticationToken submitted for the authentication attempt
      * @return <tt>true</tt> if this realm can/will authenticate Subjects represented by specified token,
@@ -92,6 +96,7 @@ public interface Realm {
      * Most implementations merely just need to lookup and return the account data only (as the method name implies)
      * and let Shiro do the rest, but implementations may of course perform eis specific login operations if so
      * desired.
+     * 得到认证信息
      *
      * @param token the application-specific representation of an account principal and credentials.
      * @return the authentication information for the account associated with the specified <tt>token</tt>,

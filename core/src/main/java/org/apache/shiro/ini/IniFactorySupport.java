@@ -18,20 +18,20 @@
  */
 package org.apache.shiro.ini;
 
+import java.util.Map;
+
 import org.apache.shiro.config.Ini;
 import org.apache.shiro.lang.io.ResourceUtils;
+import org.apache.shiro.lang.util.Factory;
 import org.apache.shiro.util.AbstractFactory;
 import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.lang.util.Factory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Map;
 
 /**
  * Base support class for {@link Factory} implementations that generate their instance(s) based on
  * {@link Ini} configuration.
- *
+ * 通过{@link Ini}配置文件加载配置信息工厂类
  * @since 1.0
  * @deprecated use Shiro's {@code Environment} mechanisms instead.
  */
