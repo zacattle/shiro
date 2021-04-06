@@ -28,7 +28,7 @@ import java.io.Serializable;
  * done too often by most Shiro end-users.  Instead, it is usually more convenient to acquire the currently executing
  * {@code Subject}'s session via the {@link org.apache.shiro.subject.Subject#getSession} method.  This interface and
  * its usages are best suited for framework development.
- *
+ * Session Key 唯一标识
  * @since 1.0
  */
 public interface SessionKey {

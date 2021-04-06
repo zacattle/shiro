@@ -30,6 +30,7 @@ package org.apache.shiro.authc;
  * Note that most Shiro users will not interact with an {@code Authenticator} instance directly.
  * Shiro's default architecture is based on an overall {@code SecurityManager} which typically
  * wraps an {@code Authenticator} instance.
+ * 认证信息管理 
  *
  * @see org.apache.shiro.mgt.SecurityManager
  * @see AbstractAuthenticator AbstractAuthenticator
@@ -45,6 +46,7 @@ public interface Authenticator {
      * user's account data relevant to Shiro.  This returned object is generally used in turn to construct a
      * {@code Subject} representing a more complete security-specific 'view' of an account that also allows access to
      * a {@code Session}.
+     * 返回认证信息
      *
      * @param authenticationToken any representation of a user's principals and credentials submitted during an
      *                            authentication attempt.

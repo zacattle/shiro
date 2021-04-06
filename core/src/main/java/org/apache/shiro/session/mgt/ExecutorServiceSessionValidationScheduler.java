@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * SessionValidationScheduler implementation that uses a
  * {@link ScheduledExecutorService} to call {@link ValidatingSessionManager#validateSessions()} every
  * <em>{@link #getInterval interval}</em> milliseconds.
- *
+ * 定时调用{@link ValidatingSessionManager#validateSessions()} 去掉过期的session
  * @since 0.9
  */
 public class ExecutorServiceSessionValidationScheduler implements SessionValidationScheduler, Runnable {
@@ -46,6 +46,7 @@ public class ExecutorServiceSessionValidationScheduler implements SessionValidat
     private ScheduledExecutorService service;
     private long interval = DefaultSessionManager.DEFAULT_SESSION_VALIDATION_INTERVAL;
     private boolean enabled = false;
+    // 线程前缀
     private String threadNamePrefix = "SessionValidationThread-";
 
     public ExecutorServiceSessionValidationScheduler() {

@@ -34,6 +34,7 @@ import java.util.Map;
  * {@code Subject.}{@link org.apache.shiro.subject.Subject#getSession(boolean) getSession(boolean)} methods (which
  * will usually use {@code SessionContext} instances to start a session with the application's
  * {@link SessionManager SessionManager}.
+ * session信息上下文，用于构建session
  *
  * @see org.apache.shiro.session.mgt.SessionManager#start SessionManager.start(SessionContext)
  * @see org.apache.shiro.session.mgt.SessionFactory SessionFactory

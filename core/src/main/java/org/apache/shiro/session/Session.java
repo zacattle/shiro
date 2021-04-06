@@ -50,7 +50,7 @@ public interface Session {
 
     /**
      * Returns the time the session was started; that is, the time the system created the instance.
-     *
+     * 创建时间
      * @return The time the system created the session.
      */
     Date getStartTimestamp();
@@ -58,7 +58,7 @@ public interface Session {
     /**
      * Returns the last time the application received a request or method invocation from the user associated
      * with this session.  Application calls to this method do not affect this access time.
-     *
+     * 最后访问时间
      * @return The time the user last interacted with the system.
      * @see #touch()
      */
@@ -74,7 +74,7 @@ public interface Session {
      * <b>*Note:</b> if you are used to the {@code HttpSession}'s {@code getMaxInactiveInterval()} method, the scale on
      * this method is different: Shiro Sessions use millisecond values for timeout whereas
      * {@code HttpSession.getMaxInactiveInterval} uses seconds.  Always use millisecond values with Shiro sessions.
-     *
+     * 过期时间
      * @return the time in milliseconds the session may remain idle before expiring.
      * @throws InvalidSessionException if the session has been stopped or expired prior to calling this method.
      * @since 0.2
@@ -102,7 +102,7 @@ public interface Session {
     /**
      * Returns the host name or IP string of the host that originated this session, or {@code null}
      * if the host is unknown.
-     *
+     * host或者IP
      * @return the host name or IP string of the host that originated this session, or {@code null}
      *         if the host address is unknown.
      */
@@ -111,6 +111,7 @@ public interface Session {
     /**
      * Explicitly updates the {@link #getLastAccessTime() lastAccessTime} of this session to the current time when
      * this method is invoked.  This method can be used to ensure a session does not time out.
+     * 明确更新session的最后访问时间，这个方法能够别用来确定session没有超时
      * <p/>
      * Most programmers won't use this method directly and will instead rely on the last access time to be updated
      * automatically as a result of an incoming web request or remote procedure call/method invocation.
@@ -154,7 +155,7 @@ public interface Session {
      * As such, you might consider {@link org.apache.shiro.subject.Subject#logout logging-out} the 'owning'
      * {@code Subject} instead of manually calling this method, as a log out is expected to stop the
      * corresponding session automatically, and also allows framework code to execute additional cleanup logic.
-     *
+     * 停止session
      * @throws InvalidSessionException if this session has stopped or expired prior to calling this method.
      */
     void stop() throws InvalidSessionException;

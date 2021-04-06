@@ -28,7 +28,7 @@ import java.util.Date;
  * <p/>
  * This class is mostly useful for framework subclassing to intercept certain <code>Session</code> calls
  * and perform additional logic.
- *
+ * 代理session
  * @since 0.9
  */
 public class ProxiedSession implements Session {

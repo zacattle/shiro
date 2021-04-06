@@ -21,7 +21,7 @@ package org.apache.shiro.session.mgt;
 /**
  * A ValidatingSessionManager is a SessionManager that can proactively validate any or all sessions
  * that may be expired.
- *
+ * 主动校验过期的session
  * @since 0.1
  */
 public interface ValidatingSessionManager extends SessionManager {

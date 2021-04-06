@@ -18,15 +18,16 @@
  */
 package org.apache.shiro.web.filter.mgt;
 
+import java.util.List;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import java.util.List;
 
 /**
  * A {@code NamedFilterList} is a {@code List} of {@code Filter} instances that is uniquely identified by a
  * {@link #getName() name}.  It has the ability to generate new {@link FilterChain} instances reflecting this list's
  * filter order via the {@link #proxy proxy} method.
- *
+ * 设置名字逻辑 
  * @since 1.0
  */
 public interface NamedFilterList extends List<Filter> {

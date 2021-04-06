@@ -22,14 +22,14 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * An {@code AuthenticationListener} listens for notifications while {@code Subject}s authenticate with the system.
- *
+ * 认证过程监听器
  * @since 0.9
  */
 public interface AuthenticationListener {
 
     /**
      * Callback triggered when an authentication attempt for a {@code Subject} has succeeded.
-     *
+     * 认证成功
      * @param token the authentication token submitted during the {@code Subject} (user)'s authentication attempt.
      * @param info  the authentication-related account data acquired after authentication for the corresponding {@code Subject}.
      */
@@ -37,7 +37,7 @@ public interface AuthenticationListener {
 
     /**
      * Callback triggered when an authentication attempt for a {@code Subject} has failed.
-     *
+     * 失败
      * @param token the authentication token submitted during the {@code Subject} (user)'s authentication attempt.
      * @param ae    the {@code AuthenticationException} that occurred as a result of the attempt.
      */
@@ -48,7 +48,7 @@ public interface AuthenticationListener {
      * <p/>
      * This method will only be triggered when a Subject explicitly logs-out of the session.  It will not
      * be triggered if their Session times out.
-     *
+     * 退出登录
      * @param principals the identifying principals of the Subject logging out.
      */
     void onLogout(PrincipalCollection principals);

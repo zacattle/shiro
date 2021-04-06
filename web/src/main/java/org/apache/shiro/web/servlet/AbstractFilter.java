@@ -18,13 +18,13 @@
  */
 package org.apache.shiro.web.servlet;
 
-import org.apache.shiro.lang.util.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
+
+import org.apache.shiro.lang.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base abstract Filter simplifying Filter initialization and {@link #getInitParam(String) access} to init parameters.
@@ -87,6 +87,7 @@ public abstract class AbstractFilter extends ServletContextSupport implements Fi
     /**
      * Sets the filter's {@link #setFilterConfig filterConfig} and then immediately calls
      * {@link #onFilterConfigSet() onFilterConfigSet()} to trigger any processing a subclass might wish to perform.
+     * 生命周期函数，会被自动回调，执行数据初始化
      *
      * @param filterConfig the servlet container supplied FilterConfig instance.
      * @throws javax.servlet.ServletException if {@link #onFilterConfigSet() onFilterConfigSet()} throws an Exception.
@@ -115,6 +116,7 @@ public abstract class AbstractFilter extends ServletContextSupport implements Fi
      * methods respectively.
      * <p/>
      * {@code init-param} values may be conveniently obtained via the {@link #getInitParam(String)} method.
+     * 模板方法，filter被初始化之后回调 留给子类实现
      *
      * @throws Exception if the subclass has an error upon initialization.
      */
@@ -123,6 +125,7 @@ public abstract class AbstractFilter extends ServletContextSupport implements Fi
 
     /**
      * Default no-op implementation that can be overridden by subclasses for custom cleanup behavior.
+     * 生命周期回调
      */
     public void destroy() {
     }

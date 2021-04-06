@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
  * realm subclasses for obtaining a realm-specific principal/identity.
  * <p/>
  * All actual Realm method implementations are left to subclasses.
+ * Realm添加缓存处理器相关
  *
  * @see #clearCache(org.apache.shiro.subject.PrincipalCollection)
  * @see #onLogout(org.apache.shiro.subject.PrincipalCollection)
@@ -59,6 +60,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
     private String name;
     // 是否支持缓存
     private boolean cachingEnabled;
+    // 缓存管理
     private CacheManager cacheManager;
 
     /**
@@ -194,6 +196,8 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
      * <li>If there are no principals from that call (or the PrincipalCollection argument was null to begin with),
      * return {@code null}</li>
      * </ul>
+     * 得到可用的身份信息
+     * 1：获取从当前Realm中得到的身份信息，如果有直接返回， 如果没有 2；得到从全部Realm得到的首要身份信息
      *
      * @param principals the PrincipalCollection holding all principals (from all realms) associated with a single Subject.
      * @return the 'primary' principal attributed to this particular realm, or the fallback 'master' principal if it

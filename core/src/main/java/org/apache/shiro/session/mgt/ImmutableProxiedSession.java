@@ -37,7 +37,7 @@ import org.apache.shiro.session.Session;
  * <li>{@link Session#removeAttribute(Object) Session.removeAttribute(key)}</li>
  * </ul>
  * Any other method invocation not listed above will result in a corresponding call to the underlying <code>Session</code>.
- *
+ * 不能更改session
  * @since 0.9
  */
 public class ImmutableProxiedSession extends ProxiedSession {

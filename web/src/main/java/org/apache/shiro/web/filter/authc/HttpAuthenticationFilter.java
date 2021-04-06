@@ -18,18 +18,19 @@
  */
 package org.apache.shiro.web.filter.authc;
 
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.web.util.WebUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.web.util.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -55,11 +56,13 @@ abstract class HttpAuthenticationFilter extends AuthenticatingFilter {
 
     /**
      * HTTP Authorization header, equal to <code>Authorization</code>
+     * 认证信息头
      */
     protected static final String AUTHORIZATION_HEADER = "Authorization";
 
     /**
      * HTTP Authentication header, equal to <code>WWW-Authenticate</code>
+     * 认证信息头
      */
     protected static final String AUTHENTICATE_HEADER = "WWW-Authenticate";
 
@@ -184,7 +187,7 @@ abstract class HttpAuthenticationFilter extends AuthenticatingFilter {
         // Check whether the current request's method requires authentication.
         // If no methods have been configured, then all of them require auth,
         // otherwise only the declared ones need authentication.
-
+        // 指定方法进行过滤
         Set<String> methods = httpMethodsFromOptions((String[])mappedValue);
         boolean authcRequired = methods.size() == 0;
         for (String m : methods) {

@@ -32,6 +32,7 @@ public class DefaultSessionStorageEvaluator implements SessionStorageEvaluator {
     /**
      * Global policy determining if Subject sessions may be used to persist Subject state if the Subject's Session
      * does not yet exist.
+     * 是否使用shiro默认的session（非web环境）来存储状态
      */
     private boolean sessionStorageEnabled = true;
 

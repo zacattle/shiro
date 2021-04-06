@@ -18,9 +18,9 @@
  */
 package org.apache.shiro.session.mgt.eis;
 
-import org.apache.shiro.session.Session;
-
 import java.io.Serializable;
+
+import org.apache.shiro.session.Session;
 
 /**
  * Interface allowing pluggable session ID generation strategies to be used with various {@link SessionDAO}
@@ -33,7 +33,7 @@ import java.io.Serializable;
  * <p/>
  * However, if you want to customize how session IDs are created before persisting the Session record into the data
  * store, you can implement this interface and typically inject it into an {@link AbstractSessionDAO} instance.
- *
+ * session ID生成器
  * @see org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator JavaUuidSessionIdGenerator
  * @see org.apache.shiro.session.mgt.eis.RandomSessionIdGenerator RandomSessionIdGenerator
  * @since 1.0

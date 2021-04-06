@@ -18,13 +18,19 @@
  */
 package org.apache.shiro.lang.codec;
 
-import org.apache.shiro.lang.util.ByteSource;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
-import java.io.*;
+import org.apache.shiro.lang.util.ByteSource;
 
 /**
  * Base abstract class that provides useful encoding and decoding operations, especially for character data.
- *
+ * 编解码工具类 特别是对字符数据
  * @since 0.9
  */
 public abstract class CodecSupport {
@@ -41,6 +47,7 @@ public abstract class CodecSupport {
      * a wrapping String and {@link CodecSupport#PREFERRED_ENCODING PREFERRED_ENCODING}, i.e.
      * <p/>
      * <code>toBytes( new String(chars), {@link CodecSupport#PREFERRED_ENCODING PREFERRED_ENCODING} );</code>
+     * 转换指定的字符数组为UTF-8编码的字节数组
      *
      * @param chars the character array to be converted to a byte array.
      * @return the byte array of the UTF-8 encoded character array.
@@ -56,6 +63,7 @@ public abstract class CodecSupport {
      * a wrapping String and the specified encoding, i.e.
      * <p/>
      * <code>toBytes( new String(chars), encoding );</code>
+     * 转换指定的字符数组为指定编码的字节数组
      *
      * @param chars    the character array to be converted to a byte array
      * @param encoding the character encoding to use to when converting to bytes.
@@ -99,7 +107,7 @@ public abstract class CodecSupport {
 
     /**
      * Converts the specified byte array to a String using the {@link CodecSupport#PREFERRED_ENCODING PREFERRED_ENCODING}.
-     *
+     * 转换指定的字节数组为UTF-8编码的字符串
      * @param bytes the byte array to turn into a String.
      * @return the specified byte array as an encoded String ({@link CodecSupport#PREFERRED_ENCODING PREFERRED_ENCODING}).
      * @see #toString(byte[], String)
@@ -168,6 +176,7 @@ public abstract class CodecSupport {
      * <li>{@link File}</li>
      * </li>{@link InputStream}</li>
      * </ul>
+     * 支持的数据源
      *
      * @param o the object to test to see if it can be easily converted to a byte array
      * @return {@code true} if the specified object can be easily converted to bytes by instances of this class,

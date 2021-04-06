@@ -15,18 +15,19 @@
  */
 package org.apache.shiro.web.session.mgt;
 
-import org.apache.shiro.session.mgt.DefaultSessionKey;
-import org.apache.shiro.web.util.RequestPairSource;
+import java.io.Serializable;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import java.io.Serializable;
+
+import org.apache.shiro.session.mgt.DefaultSessionKey;
+import org.apache.shiro.web.util.RequestPairSource;
 
 /**
  * A {@link org.apache.shiro.session.mgt.SessionKey SessionKey} implementation that also retains the
  * {@code ServletRequest} and {@code ServletResponse} associated with the web request that is performing the
  * session lookup.
- *
+ * web环境下的session key
  * @since 1.0
  */
 public class WebSessionKey extends DefaultSessionKey implements RequestPairSource {

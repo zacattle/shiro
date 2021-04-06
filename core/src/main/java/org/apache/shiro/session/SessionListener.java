@@ -21,7 +21,7 @@ package org.apache.shiro.session;
 /**
  * Interface to be implemented by components that wish to be notified of events that occur during a
  * {@link Session Session}'s life cycle.
- *
+ * 会话状态监听器
  * @since 0.9
  */
 public interface SessionListener {

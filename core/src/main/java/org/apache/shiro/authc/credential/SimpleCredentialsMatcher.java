@@ -18,14 +18,14 @@
  */
 package org.apache.shiro.authc.credential;
 
+import java.security.MessageDigest;
+import java.util.Arrays;
+
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.lang.codec.CodecSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.security.MessageDigest;
-import java.util.Arrays;
 
 
 /**
@@ -117,6 +117,7 @@ public class SimpleCredentialsMatcher extends CodecSupport implements Credential
      * (via {@link #getCredentials(org.apache.shiro.authc.AuthenticationInfo) getCredentials(account)}) and then passes both of
      * them to the {@link #equals(Object,Object) equals(tokenCredentials, accountCredentials)} method for equality
      * comparison.
+     * 验证认证信息过程
      *
      * @param token the {@code AuthenticationToken} submitted during the authentication attempt.
      * @param info  the {@code AuthenticationInfo} stored in the system matching the token principal.

@@ -64,6 +64,7 @@ public class UsernamePasswordToken implements HostAuthenticationToken, RememberM
     /**
      * Whether or not 'rememberMe' should be enabled for the corresponding login attempt;
      * default is <code>false</code>
+     * 是否记住我 默认false
      */
     private boolean rememberMe = false;
 

@@ -18,12 +18,12 @@
  */
 package org.apache.shiro.session.mgt;
 
-import org.apache.shiro.session.InvalidSessionException;
-import org.apache.shiro.session.Session;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
+import org.apache.shiro.session.InvalidSessionException;
+import org.apache.shiro.session.Session;
 
 /**
  * A DelegatingSession is a client-tier representation of a server side
@@ -37,7 +37,7 @@ import java.util.Date;
  * <p>Of course, if used in-process with a NativeSessionManager business POJO, as might be the case in a
  * web-based application where the web classes and server-side business pojos exist in the same
  * JVM, a remote method call will not be incurred.
- *
+ * 
  * @since 0.1
  */
 public class DelegatingSession implements Session, Serializable {

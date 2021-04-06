@@ -18,14 +18,15 @@
  */
 package org.apache.shiro.web.servlet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A Servlet Filter that enables AOP-style &quot;around&quot; advice for a ServletRequest via
@@ -33,7 +34,7 @@ import java.io.IOException;
  * {@link #postHandle(javax.servlet.ServletRequest, javax.servlet.ServletResponse) postHandle},
  * and {@link #afterCompletion(javax.servlet.ServletRequest, javax.servlet.ServletResponse, Exception) afterCompletion}
  * hooks.
- *
+ * 添加切片逻辑方法，实现前置，后置，最终方法
  * @since 0.9
  */
 public abstract class AdviceFilter extends OncePerRequestFilter {
@@ -67,6 +68,7 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * an Exception.
      * <p/>
      * The default implementation does nothing (no-op) and exists as a template method for subclasses.
+     * 前缀执行方法，控制是否进行Filter过滤的逻辑
      *
      * @param request  the incoming ServletRequest
      * @param response the outgoing ServletResponse
@@ -82,7 +84,7 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * cleanup if so desired.
      * <p/>
      * The default implementation does nothing (no-op) and exists as a template method for subclasses.
-     *
+     * 最终方法
      * @param request   the incoming ServletRequest
      * @param response  the outgoing ServletResponse
      * @param exception any exception thrown during {@link #preHandle preHandle}, {@link #executeChain executeChain},
@@ -98,7 +100,7 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * Actually executes the specified filter chain by calling <code>chain.doFilter(request,response);</code>.
      * <p/>
      * Can be overridden by subclasses for custom logic.
-     *
+     * 执行过滤逻辑方法，默认无内容，直接通过
      * @param request  the incoming ServletRequest
      * @param response the outgoing ServletResponse
      * @param chain    the filter chain to execute
@@ -157,6 +159,8 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * This implementation specifically calls
      * {@link #afterCompletion(javax.servlet.ServletRequest, javax.servlet.ServletResponse, Exception) afterCompletion}
      * as well as handles any exceptions properly.
+     * 
+     * 后缀方法，执行资源清理等操作
      *
      * @param request  the incoming {@code ServletRequest}
      * @param response the outgoing {@code ServletResponse}

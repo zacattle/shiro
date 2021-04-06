@@ -25,6 +25,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 /**
  * Interface implemented by classes that can determine if an AuthenticationToken's provided
  * credentials matches a corresponding account's credentials stored in the system.
+ * 身份信息验证
  *
  * <p>Simple direct comparisons are handled well by the
  * {@link SimpleCredentialsMatcher SimpleCredentialsMatcher}.  If you

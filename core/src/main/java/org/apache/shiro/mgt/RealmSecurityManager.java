@@ -18,21 +18,22 @@
  */
 package org.apache.shiro.mgt;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.CacheManagerAware;
 import org.apache.shiro.event.EventBus;
 import org.apache.shiro.event.EventBusAware;
-import org.apache.shiro.realm.Realm;
 import org.apache.shiro.lang.util.LifecycleUtils;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import org.apache.shiro.realm.Realm;
 
 
 /**
  * Shiro support of a {@link SecurityManager} class hierarchy based around a collection of
  * {@link org.apache.shiro.realm.Realm}s.  All actual {@code SecurityManager} method implementations are left to
  * subclasses.
+ * 添加Realm集合
  *
  * @since 0.9
  */
@@ -40,6 +41,7 @@ public abstract class RealmSecurityManager extends CachingSecurityManager {
 
     /**
      * Internal collection of <code>Realm</code>s used for all authentication and authorization operations.
+     * Realm集合
      */
     private Collection<Realm> realms;
 

@@ -18,14 +18,14 @@
  */
 package org.apache.shiro.session.mgt.eis;
 
-import org.apache.shiro.session.Session;
-
 import java.io.Serializable;
 import java.util.UUID;
 
+import org.apache.shiro.session.Session;
+
 /**
  * {@link SessionIdGenerator} that generates String values of JDK {@link java.util.UUID}'s as the session IDs.
- *
+ * uuid session ID生成器
  * @since 1.0
  */
 public class JavaUuidSessionIdGenerator implements SessionIdGenerator {

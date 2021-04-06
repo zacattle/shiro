@@ -30,7 +30,7 @@ package org.apache.shiro.event;
  * Shiro's default configuration mechanisms will <em>NOT</em> auto-register {@code @Subscriber}-annotated components
  * that are also {@code EventBusAware}: it is assumed that the {@code EventBusAware} implementation, having access to
  * an EventBus directly, knows best when to register/unregister itself.
- *
+ * 事件总线自动装配接口
  * @since 1.3
  */
 public interface EventBusAware {

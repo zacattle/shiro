@@ -18,6 +18,11 @@
  */
 package org.apache.shiro.session.mgt;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.CacheManagerAware;
 import org.apache.shiro.session.Session;
@@ -27,15 +32,10 @@ import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-
 /**
  * Default business-tier implementation of a {@link ValidatingSessionManager}.  All session CRUD operations are
  * delegated to an internal {@link SessionDAO}.
- *
+ * 默认的session管理器
  * @since 0.1
  */
 public class DefaultSessionManager extends AbstractValidatingSessionManager implements CacheManagerAware {
@@ -49,7 +49,7 @@ public class DefaultSessionManager extends AbstractValidatingSessionManager impl
     protected SessionDAO sessionDAO;  //todo - move SessionDAO up to AbstractValidatingSessionManager?
 
     private CacheManager cacheManager;
-
+    // 是否删除未通过校验的Session
     private boolean deleteInvalidSessions;
 
     public DefaultSessionManager() {
@@ -102,7 +102,7 @@ public class DefaultSessionManager extends AbstractValidatingSessionManager impl
      * the data store, even after they have stopped or expired.  Setting this attribute to {@code false} will allow
      * such querying, but with the caveat that the application developer/configurer deletes the sessions themselves by
      * some other means (cron, quartz, etc).
-     *
+     * 是否自动删除过期或已停止的session
      * @return {@code true} if sessions should be automatically deleted after they are discovered to be invalid,
      *         {@code false} if invalid sessions will be manually deleted by some process external to Shiro's control.
      * @since 1.0
@@ -155,6 +155,7 @@ public class DefaultSessionManager extends AbstractValidatingSessionManager impl
         if (log.isTraceEnabled()) {
             log.trace("Creating session for host {}", s.getHost());
         }
+        // 保存session
         create(s);
         return s;
     }
@@ -167,7 +168,7 @@ public class DefaultSessionManager extends AbstractValidatingSessionManager impl
      * Persists the given session instance to an underlying EIS (Enterprise Information System).  This implementation
      * delegates and calls
      * <code>this.{@link SessionDAO sessionDAO}.{@link SessionDAO#create(org.apache.shiro.session.Session) create}(session);<code>
-     *
+     * 保存session
      * @param session the Session instance to persist to the underlying EIS.
      */
     protected void create(Session session) {
@@ -232,6 +233,9 @@ public class DefaultSessionManager extends AbstractValidatingSessionManager impl
         return sessionKey.getSessionId();
     }
 
+    /**
+     * 从数据源得到session 默认保存在内存中
+     */
     protected Session retrieveSessionFromDataSource(Serializable sessionId) throws UnknownSessionException {
         return sessionDAO.readSession(sessionId);
     }

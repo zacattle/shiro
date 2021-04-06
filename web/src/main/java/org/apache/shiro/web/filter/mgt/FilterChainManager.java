@@ -18,17 +18,18 @@
  */
 package org.apache.shiro.web.filter.mgt;
 
-import org.apache.shiro.config.ConfigurationException;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import java.util.Map;
-import java.util.Set;
+
+import org.apache.shiro.config.ConfigurationException;
 
 /**
  * A {@code FilterChainManager} manages the creation and modification of {@link Filter} chains from an available pool
  * of {@link Filter} instances.
- *
+ * 过滤器链FilterChain管理器
  * @since 1.0
  */
 public interface FilterChainManager {
@@ -43,7 +44,7 @@ public interface FilterChainManager {
     /**
      * Returns the filter chain identified by the specified {@code chainName} or {@code null} if there is no chain with
      * that name.
-     *
+     * 过滤器Filter链
      * @param chainName the name identifying the filter chain.
      * @return the filter chain identified by the specified {@code chainName} or {@code null} if there is no chain with
      *         that name.
@@ -52,14 +53,14 @@ public interface FilterChainManager {
 
     /**
      * Returns {@code true} if one or more configured chains are available, {@code false} if none are configured.
-     *
+     * 是否已设置过滤器Filter链
      * @return {@code true} if one or more configured chains are available, {@code false} if none are configured.
      */
     boolean hasChains();
 
     /**
      * Returns the names of all configured chains or an empty {@code Set} if no chains have been configured.
-     *
+     * 
      * @return the names of all configured chains or an empty {@code Set} if no chains have been configured.
      */
     Set<String> getChainNames();

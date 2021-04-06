@@ -23,7 +23,7 @@ import org.apache.shiro.lang.ShiroException;
 
 /**
  * General exception thrown due to an error during the Authentication process.
- *
+ * 认证过程失败异常
  * @since 0.1
  */
 public class AuthenticationException extends ShiroException

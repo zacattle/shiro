@@ -18,19 +18,21 @@
  */
 package org.apache.shiro.web.filter;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.util.WebUtils;
+import java.io.IOException;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import java.io.IOException;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.WebUtils;
 
 /**
  * Superclass for any filter that controls access to a resource and may redirect the user to the login page
  * if they are not authenticated.  This superclass provides the method
  * {@link #saveRequestAndRedirectToLogin(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}
  * which is used by many subclasses as the behavior when a user is unauthenticated.
+ * 访问控制逻辑添加，未通过认证自动跳转至登录url
  *
  * @since 0.9
  */
@@ -54,6 +56,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
 
     /**
      * The login url to used to authenticate a user, used when redirecting users if authentication is required.
+     * 默认的登录url
      */
     private String loginUrl = DEFAULT_LOGIN_URL;
 
@@ -102,6 +105,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
      * if the request should be handled by the
      * {@link #onAccessDenied(ServletRequest,ServletResponse,Object) onAccessDenied(request,response,mappedValue)}
      * method instead.
+     * isAccessAllowed和onAccessDenied两个方法共同决定是否执行过滤过程，其中一个方法返回true则通过
      *
      * @param request     the incoming <code>ServletRequest</code>
      * @param response    the outgoing <code>ServletResponse</code>
@@ -165,6 +169,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
     /**
      * Returns <code>true</code> if the incoming request is a login request, <code>false</code> otherwise.
      * <p/>
+     * 是否是登录url请求
      * The default implementation merely returns <code>true</code> if the incoming request matches the configured
      * {@link #getLoginUrl() loginUrl} by calling
      * <code>{@link #pathsMatch(String, String) pathsMatch(loginUrl, request)}</code>.
@@ -182,7 +187,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
      * <p/>
      * This implementation simply calls {@link #saveRequest(javax.servlet.ServletRequest) saveRequest(request)}
      * and then {@link #redirectToLogin(javax.servlet.ServletRequest, javax.servlet.ServletResponse) redirectToLogin(request,response)}.
-     *
+     * 跳转至登录url
      * @param request  the incoming <code>ServletRequest</code>
      * @param response the outgoing <code>ServletResponse</code>
      * @throws IOException if an error occurs.

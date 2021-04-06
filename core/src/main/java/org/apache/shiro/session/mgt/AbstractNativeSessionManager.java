@@ -18,6 +18,11 @@
  */
 package org.apache.shiro.session.mgt;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.event.EventBus;
 import org.apache.shiro.event.EventBusAware;
@@ -30,24 +35,19 @@ import org.apache.shiro.util.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-
 /**
  * Abstract implementation supporting the {@link NativeSessionManager NativeSessionManager} interface, supporting
  * {@link SessionListener SessionListener}s and application of the
  * {@link #getGlobalSessionTimeout() globalSessionTimeout}.
- *
+ * SessionManager抽象实现类
  * @since 1.0
  */
 public abstract class AbstractNativeSessionManager extends AbstractSessionManager implements NativeSessionManager, EventBusAware {
 
     private static final Logger log = LoggerFactory.getLogger(AbstractSessionManager.class);
-
+    // 实现总线
     private EventBus eventBus;
-
+    // session事件监听器
     private Collection<SessionListener> listeners;
 
     public AbstractNativeSessionManager() {
@@ -85,7 +85,7 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
 
     /**
      * Publishes events on the event bus if the event bus is non-null, otherwise does nothing.
-     *
+     * 发布事件
      * @param event the event to publish on the event bus if the event bus exists.
      * @since 1.3
      */
@@ -101,6 +101,7 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
         onStart(session, context);
         notifyStart(session);
         //Don't expose the EIS-tier Session object to the client-tier:
+        // 返回包装类，包含一个SessionManager
         return createExposedSession(session, context);
     }
 
@@ -108,7 +109,7 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
      * Creates a new {@code Session Session} instance based on the specified (possibly {@code null})
      * initialization data.  Implementing classes must manage the persistent state of the returned session such that it
      * could later be acquired via the {@link #getSession(SessionKey)} method.
-     *
+     * 创建session
      * @param context the initialization data that can be used by the implementation or underlying
      *                {@link SessionFactory} when instantiating the internal {@code Session} instance.
      * @return the new {@code Session} instance.
@@ -129,7 +130,7 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
      * Template method that allows subclasses to react to a new session being created.
      * <p/>
      * This method is invoked <em>before</em> any session listeners are notified.
-     *
+     * 预留模板方法 给子类实现 用于在一个session创建之后进行其他操作
      * @param session the session that was just {@link #createSession created}.
      * @param context the {@link SessionContext SessionContext} that was used to start the session.
      */
@@ -163,6 +164,9 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
         return new DelegatingSession(this, new DefaultSessionKey(session.getId()));
     }
 
+    /**
+     * 返回代理session
+     */
     protected Session createExposedSession(Session session, SessionKey key) {
         return new DelegatingSession(this, new DefaultSessionKey(session.getId()));
     }
@@ -184,7 +188,7 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
     /**
      * Notifies any interested {@link SessionListener}s that a Session has started.  This method is invoked
      * <em>after</em> the {@link #onStart onStart} method is called.
-     *
+     * 触发session开始事件
      * @param session the session that has just started that will be delivered to any
      *                {@link #setSessionListeners(java.util.Collection) registered} session listeners.
      * @see SessionListener#onStart(org.apache.shiro.session.Session)
@@ -195,13 +199,14 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
         }
     }
 
+    // 触发session停止事件
     protected void notifyStop(Session session) {
         Session forNotification = beforeInvalidNotification(session);
         for (SessionListener listener : this.listeners) {
             listener.onStop(forNotification);
         }
     }
-
+    // 触发session过期事件
     protected void notifyExpiration(Session session) {
         Session forNotification = beforeInvalidNotification(session);
         for (SessionListener listener : this.listeners) {
@@ -277,6 +282,7 @@ public abstract class AbstractNativeSessionManager extends AbstractSessionManage
         }
     }
 
+    // 停止session
     public void stop(SessionKey key) throws InvalidSessionException {
         Session session = lookupRequiredSession(key);
         try {

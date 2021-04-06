@@ -18,10 +18,6 @@
  */
 package org.apache.shiro.event.support;
 
-import org.apache.shiro.event.EventBus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,6 +27,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import org.apache.shiro.event.EventBus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A default event bus implementation that synchronously publishes events to registered listeners.  Listeners can be
@@ -69,6 +69,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * been used).
  *
  * This implementation is thread-safe and may be used concurrently.
+ * 默认的事件总线
  *
  * @since 1.3
  */
@@ -79,7 +80,7 @@ public class DefaultEventBus implements EventBus {
     private static final String EVENT_LISTENER_ERROR_MSG = "Event listener processing failed.  Listeners should " +
             "generally handle exceptions directly and not propagate to the event bus.";
 
-    //this is stateless, we can retain a static final reference:
+    //this is stateless, we can retain a static final reference: 监听器比较器
     private static final EventListenerComparator EVENT_LISTENER_COMPARATOR = new EventListenerComparator();
 
     private EventListenerResolver eventListenerResolver;

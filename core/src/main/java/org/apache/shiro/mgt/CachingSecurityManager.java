@@ -34,7 +34,7 @@ import org.apache.shiro.lang.util.LifecycleUtils;
  * <b>Change in 1.0</b> - a default {@code CacheManager} instance is <em>not</em> created by default during
  * instantiation.  As caching strategies can vary greatly depending on an application's needs, a {@code CacheManager}
  * instance must be explicitly configured if caching across the framework is to be enabled.
- *
+ * 添加缓存管理逻辑
  * @since 0.9
  */
 public abstract class CachingSecurityManager implements SecurityManager, Destroyable, CacheManagerAware, EventBusAware {
@@ -120,6 +120,7 @@ public abstract class CachingSecurityManager implements SecurityManager, Destroy
     }
 
     /**
+     * 给cacheManager赋值eventBus
      * @since 1.3
      */
     protected void applyEventBusToCacheManager() {

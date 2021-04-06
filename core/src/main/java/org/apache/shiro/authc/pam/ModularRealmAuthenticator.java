@@ -18,14 +18,19 @@
  */
 package org.apache.shiro.authc.pam;
 
-import org.apache.shiro.authc.*;
+import java.util.Collection;
+
+import org.apache.shiro.authc.AbstractAuthenticator;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.LogoutAware;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
 
 /**
  * A {@code ModularRealmAuthenticator} delegates account lookups to a pluggable (modular) collection of
@@ -73,6 +78,7 @@ public class ModularRealmAuthenticator extends AbstractAuthenticator {
     ============================================*/
     /**
      * List of realms that will be iterated through when a user authenticates.
+     * Realm集合
      */
     private Collection<Realm> realms;
 

@@ -18,12 +18,17 @@
  */
 package org.apache.shiro.web.servlet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.servlet.*;
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A proxied filter chain is a {@link FilterChain} instance that proxies an original {@link FilterChain} as well
@@ -31,6 +36,7 @@ import java.util.List;
  * original chain.  It allows a list of filters to execute before continuing the original (proxied)
  * {@code FilterChain} instance.
  *
+ * 封装原始的 FilterChain 和一组List<Filter> 实现在调用原始FilterChain之前调用一组List<Filter>
  * @since 0.9
  */
 public class ProxiedFilterChain implements FilterChain {

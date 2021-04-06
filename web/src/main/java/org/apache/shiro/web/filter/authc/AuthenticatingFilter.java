@@ -18,29 +18,31 @@
  */
 package org.apache.shiro.web.filter.authc;
 
+import java.io.IOException;
+import java.util.Arrays;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.subject.Subject;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import java.io.IOException;
-import java.util.Arrays;
-
 /**
  * An <code>AuthenticationFilter</code> that is capable of automatically performing an authentication attempt
  * based on the incoming request.
- *
+ * 自动执行认证过程逻辑
  * @since 0.9
  */
 public abstract class AuthenticatingFilter extends AuthenticationFilter {
+	// 单个url放行标识
     public static final String PERMISSIVE = "permissive";
 
     //TODO - complete JavaDoc
-
+    // 执行登录过程,返回是否登录成功
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         AuthenticationToken token = createToken(request, response);
         if (token == null) {
@@ -115,7 +117,7 @@ public abstract class AuthenticatingFilter extends AuthenticationFilter {
      * <p/>
      * The default implementation returns <code>true</code> if the user is authenticated.  Will also return
      * <code>true</code> if the {@link #isLoginRequest} returns false and the &quot;permissive&quot; flag is set.
-     *
+     * 执行是否已通过认证验证 校验
      * @return <code>true</code> if request should be allowed access
      */
     @Override
@@ -126,7 +128,7 @@ public abstract class AuthenticatingFilter extends AuthenticationFilter {
 
     /**
      * Returns <code>true</code> if the mappedValue contains the {@link #PERMISSIVE} qualifier.
-     *
+     * 是否已通过权限验证
      * @return <code>true</code> if this filter should be permissive
      */
     protected boolean isPermissive(Object mappedValue) {

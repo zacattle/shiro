@@ -31,6 +31,9 @@ import java.util.Set;
  * A PrincipalCollection organizes its internal principals based on the {@code Realm} where they came from when the
  * Subject was first created.  To obtain the principal(s) for a specific Realm, see the {@link #fromRealm} method.  You
  * can also see which realms contributed to this collection via the {@link #getRealmNames() getRealmNames()} method.
+ * 
+ * 身份信息集合-关联指定的{@link Subject Subject}
+ * 身份信息可能是用户名，或者邮箱 或者只是一个uuid等等形式
  *
  * @see #getPrimaryPrincipal()
  * @see #fromRealm(String realmName)
@@ -70,6 +73,8 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * over the {@link PrincipalCollection} returned at the end of an authentication attempt via the
      * <code>AuthenticationStrategy#{@link org.apache.shiro.authc.pam.AuthenticationStrategy#afterAllAttempts(org.apache.shiro.authc.AuthenticationToken, org.apache.shiro.authc.AuthenticationInfo) afterAllAttempts}</code>
      * implementation.
+     * 
+     * 首要身份信息
      *
      * @return the primary principal used to uniquely identify the owning account/Subject
      * @since 1.0
@@ -81,6 +86,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * of the specified type.
      * <p/>
      * Note that this will return {@code null} if the 'owning' subject has not yet logged in.
+     * 第一个指定类型的身份信息
      *
      * @param type the type of the principal that should be returned.
      * @return a principal of the specified type or {@code null} if there isn't one of the specified type.
@@ -92,6 +98,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * type are contained.
      * <p/>
      * Note that this will return an empty Collection if the 'owning' subject has not yet logged in.
+     * 指定类型的身份信息集合
      *
      * @param type the type of the principals that should be returned.
      * @return a Collection of principals that are assignable from the specified type, or
@@ -104,6 +111,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * there are not any principals.
      * <p/>
      * Note that this will return an empty List if the 'owning' subject has not yet logged in.
+     * 得到所有配置的Realms返回的身份信息集合List,未登录是返回一个空的List
      *
      * @return a single Subject's principals retrieved from all configured Realms as a List.
      */
@@ -114,6 +122,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * are not any principals.
      * <p/>
      * Note that this will return an empty Set if the 'owning' subject has not yet logged in.
+     * 得到所有配置的Realms返回的身份信息集合Set,未登录是返回一个空的Set
      *
      * @return a single Subject's principals retrieved from all configured Realms as a Set.
      */
@@ -124,6 +133,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * Collection if there are not any principals from that realm.
      * <p/>
      * Note that this will return an empty Collection if the 'owning' subject has not yet logged in.
+     * 返回指定realm得到的身份信息
      *
      * @param realmName the name of the Realm from which the principals were retrieved.
      * @return the Subject's principals from the specified Realm only as a Collection or an empty Collection if there
@@ -133,6 +143,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
 
     /**
      * Returns the realm names that this collection has principals for.
+     * 得到全部的realm的名字
      *
      * @return the names of realms that this collection has one or more principals for.
      */
@@ -140,6 +151,7 @@ public interface PrincipalCollection extends Iterable, Serializable {
 
     /**
      * Returns {@code true} if this collection is empty, {@code false} otherwise.
+     * 身份信息集合是否为空
      *
      * @return {@code true} if this collection is empty, {@code false} otherwise.
      */

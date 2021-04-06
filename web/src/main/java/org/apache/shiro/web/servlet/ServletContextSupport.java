@@ -22,7 +22,7 @@ import javax.servlet.ServletContext;
 
 /**
  * Base implementation for any components that need to access the web application's {@link ServletContext ServletContext}.
- *
+ * ServletContext持有类
  * @since 0.2
  */
 public class ServletContextSupport {
@@ -38,6 +38,10 @@ public class ServletContextSupport {
         this.servletContext = servletContext;
     }
 
+    /**
+     * 得到指定的key配置的值
+     * @return
+     */
     @SuppressWarnings({"UnusedDeclaration"})
     protected String getContextInitParam(String paramName) {
         return getServletContext().getInitParameter(paramName);

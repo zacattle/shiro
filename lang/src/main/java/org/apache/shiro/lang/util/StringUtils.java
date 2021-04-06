@@ -19,7 +19,14 @@
 package org.apache.shiro.lang.util;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 /**
  * <p>Simple utility class for String operations useful across the framework.
@@ -350,12 +357,12 @@ public class StringUtils {
      * That file is Apache 2.0 licensed as well, making Glen's code a great starting point for us to modify to
      * our needs.
      *
-     * @param aLine          the String to parse
-     * @param delimiter      the delimiter by which the <tt>line</tt> argument is to be split
-     * @param beginQuoteChar the character signifying the start of quoted text (so the quoted text will not be split)
-     * @param endQuoteChar   the character signifying the end of quoted text
-     * @param retainQuotes   if the quotes themselves should be retained when constructing the corresponding token
-     * @param trimTokens     if leading and trailing whitespace should be trimmed from discovered tokens.
+     * @param aLine          the String to parse 要分隔的字符串
+     * @param delimiter      the delimiter by which the <tt>line</tt> argument is to be split 分隔符
+     * @param beginQuoteChar the character signifying the start of quoted text (so the quoted text will not be split) 引用字符的开始标志字符 不会进行切分
+     * @param endQuoteChar   the character signifying the end of quoted text 引用字符的结束标志字符
+     * @param retainQuotes   if the quotes themselves should be retained when constructing the corresponding token 是否保留引用字符
+     * @param trimTokens     if leading and trailing whitespace should be trimmed from discovered tokens. 是否删除前置和后置空字符
      * @return the tokens discovered from parsing the given delimited <tt>line</tt>.
      */
     public static String[] split(String aLine, char delimiter, char beginQuoteChar, char endQuoteChar,

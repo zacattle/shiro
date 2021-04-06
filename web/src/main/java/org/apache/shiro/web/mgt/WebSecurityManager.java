@@ -32,7 +32,7 @@ public interface WebSecurityManager extends SecurityManager {
      * session for this. Typically, a security manager will use the servlet container's HTTP session
      * but custom session implementations, for example based on EhCache, may also be used. This
      * method indicates whether the security manager is using the HTTP session or not.
-     *
+     * 是否使用容器session
      * @return <code>true</code> if the security manager is using the HTTP session; otherwise,
      *         <code>false</code>.
      */

@@ -18,22 +18,22 @@
  */
 package org.apache.shiro.session.mgt;
 
+import java.util.Collection;
+
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.lang.util.Destroyable;
+import org.apache.shiro.lang.util.LifecycleUtils;
 import org.apache.shiro.session.ExpiredSessionException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
-import org.apache.shiro.lang.util.Destroyable;
-import org.apache.shiro.lang.util.LifecycleUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
 
 
 /**
  * Default business-tier implementation of the {@link ValidatingSessionManager} interface.
- *
+ * 添加session校验逻辑
  * @since 0.1
  */
 public abstract class AbstractValidatingSessionManager extends AbstractNativeSessionManager
@@ -46,6 +46,7 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
     /**
      * The default interval at which sessions will be validated (1 hour);
      * This can be overridden by calling {@link #setSessionValidationInterval(long)}
+     * session校验事件间隔
      */
     public static final long DEFAULT_SESSION_VALIDATION_INTERVAL = MILLIS_PER_HOUR;
 
@@ -55,7 +56,7 @@ public abstract class AbstractValidatingSessionManager extends AbstractNativeSes
      * Scheduler used to validate sessions on a regular basis.
      */
     protected SessionValidationScheduler sessionValidationScheduler;
-
+    // session校验事件间隔
     protected long sessionValidationInterval;
 
     public AbstractValidatingSessionManager() {

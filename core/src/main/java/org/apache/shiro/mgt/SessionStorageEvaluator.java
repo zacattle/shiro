@@ -39,6 +39,7 @@ import org.apache.shiro.subject.Subject;
  * If you simply wish to enable or disable session usage at a global level for all {@code Subject}s, the
  * {@link DefaultSessionStorageEvaluator} should be sufficient.  Per-subject behavior should be performed in custom
  * implementations of this interface.
+ * 是否使用Subject的session进行相关状态的存储
  *
  * @see Subject#getSession()
  * @see Subject#getSession(boolean)

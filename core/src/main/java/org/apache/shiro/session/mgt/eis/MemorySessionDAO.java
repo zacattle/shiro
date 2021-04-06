@@ -18,17 +18,17 @@
  */
 package org.apache.shiro.session.mgt.eis;
 
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.UnknownSessionException;
-import org.apache.shiro.util.CollectionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.UnknownSessionException;
+import org.apache.shiro.util.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -49,6 +49,8 @@ import java.util.concurrent.ConcurrentMap;
  * cache implementations that would expunge entries due to TTL settings, resulting in Sessions that would be randomly
  * (and permanently) lost.  The Shiro 1.0 release refactored this implementation to be 100% memory-based (without
  * {@code Cache} usage to avoid this problem.
+ * 
+ * 内存中保存session信息实现类
  *
  * @see CachingSessionDAO
  * @since 0.1

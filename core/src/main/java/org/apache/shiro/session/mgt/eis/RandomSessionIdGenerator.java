@@ -18,17 +18,17 @@
  */
 package org.apache.shiro.session.mgt.eis;
 
+import java.io.Serializable;
+import java.util.Random;
+
 import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
-import java.util.Random;
-
 /**
  * Generates session IDs by using a {@link Random} instance to generate random IDs. The default {@code Random}
  * implementation is a {@link java.security.SecureRandom SecureRandom} with the {@code SHA1PRNG} algorithm.
- *
+ * sha1随机数 session ID生成器
  * @since 1.0
  */
 public class RandomSessionIdGenerator implements SessionIdGenerator {

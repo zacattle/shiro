@@ -15,23 +15,23 @@
  */
 package org.apache.shiro.session.mgt;
 
-import org.apache.shiro.session.InvalidSessionException;
-
 import java.util.Collection;
 import java.util.Date;
+
+import org.apache.shiro.session.InvalidSessionException;
 
 /**
  * A {@code Native} session manager is one that manages sessions natively - that is, it is directly responsible
  * for the creation, persistence and removal of {@link org.apache.shiro.session.Session Session} instances and their
  * lifecycles.
- *
+ * 本机会话管理器
  * @since 1.0
  */
 public interface NativeSessionManager extends SessionManager {
 
     /**
      * Returns the time the associated {@code Session} started (was created).
-     *
+     * 创建时间
      * @param key the session key to use to look up the target session.
      * @return the time the specified {@code Session} started (was created).
      * @see org.apache.shiro.session.Session#getStartTimestamp()
@@ -40,7 +40,7 @@ public interface NativeSessionManager extends SessionManager {
 
     /**
      * Returns the time the associated {@code Session} last interacted with the system.
-     *
+     * 最后更改时间
      * @param key the session key to use to look up the target session.
      * @return time the session last accessed the system
      * @see org.apache.shiro.session.Session#getLastAccessTime()
@@ -51,7 +51,7 @@ public interface NativeSessionManager extends SessionManager {
     /**
      * Returns {@code true} if the associated session is valid (it exists and is not stopped nor expired),
      * {@code false} otherwise.
-     *
+     * 是否可用
      * @param key the session key to use to look up the target session.
      * @return {@code true} if the session is valid (exists and is not stopped or expired), {@code false} otherwise.
      */
@@ -62,7 +62,7 @@ public interface NativeSessionManager extends SessionManager {
      * an {@link org.apache.shiro.session.InvalidSessionException} indicating that the session id is invalid.  This
      * might be preferred to be used instead of {@link #isValid} since any exception thrown will definitively explain
      * the reason for invalidation.
-     *
+     * 是否可用 不可用抛出异常
      * @param key the session key to use to look up the target session.
      * @throws org.apache.shiro.session.InvalidSessionException
      *          if the session id is invalid (it does not exist or it is stopped or expired).
@@ -76,7 +76,7 @@ public interface NativeSessionManager extends SessionManager {
      * <li>A non-negative return value (0 or greater) means the session expiration will occur if idle for that
      * length of time.</li>
      * </ul>
-     *
+     * 得到过期时间
      * @param key the session key to use to look up the target session.
      * @return the time in milliseconds that the associated session may remain idle before expiring.
      * @throws org.apache.shiro.session.InvalidSessionException

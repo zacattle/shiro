@@ -18,24 +18,25 @@
  */
 package org.apache.shiro.web.filter.authc;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 
 /**
  * Base class for all Filters that require the current user to be authenticated. This class encapsulates the
  * logic of checking whether a user is already authenticated in the system while subclasses are required to perform
  * specific logic for unauthenticated requests.
+ * 添加认证过程逻辑
  *
  * @since 0.9
  */
 public abstract class AuthenticationFilter extends AccessControlFilter {
 
     //TODO - complete JavaDoc
-
+	// 默认的登录成功后跳转的url
     public static final String DEFAULT_SUCCESS_URL = "/";
 
     private String successUrl = DEFAULT_SUCCESS_URL;
@@ -73,7 +74,7 @@ public abstract class AuthenticationFilter extends AccessControlFilter {
      * The default implementation {@link #getSubject(javax.servlet.ServletRequest, javax.servlet.ServletResponse) acquires}
      * the currently executing Subject and then returns
      * {@link org.apache.shiro.subject.Subject#isAuthenticated() subject.isAuthenticated()};
-     *
+     * 是否已通过认证 校验
      * @return true if the subject is authenticated; false if the subject is unauthenticated
      */
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
@@ -85,7 +86,7 @@ public abstract class AuthenticationFilter extends AccessControlFilter {
      * Redirects to user to the previously attempted URL after a successful login.  This implementation simply calls
      * <code>{@link org.apache.shiro.web.util.WebUtils WebUtils}.{@link WebUtils#redirectToSavedRequest(javax.servlet.ServletRequest, javax.servlet.ServletResponse, String) redirectToSavedRequest}</code>
      * using the {@link #getSuccessUrl() successUrl} as the {@code fallbackUrl} argument to that call.
-     *
+     * 调整成功登录url
      * @param request  the incoming request
      * @param response the outgoing response
      * @throws Exception if there is a problem redirecting.

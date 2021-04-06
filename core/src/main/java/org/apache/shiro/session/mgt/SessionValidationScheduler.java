@@ -21,7 +21,7 @@ package org.apache.shiro.session.mgt;
 /**
  * Interface that should be implemented by classes that can control validating sessions on a regular
  * basis.  This interface is used as a delegate for session validation by the {@link org.apache.shiro.session.mgt.DefaultSessionManager}
- *
+ * 定期进行session校验的执行器
  * @see org.apache.shiro.session.mgt.DefaultSessionManager#setSessionValidationScheduler(SessionValidationScheduler)
  * @since 0.1
  */
@@ -33,7 +33,7 @@ public interface SessionValidationScheduler {
      * <p/>
      * It does <em>not</em> indicate if the validation is actually executing at that instant - only that it is prepared
      * to do so at the appropriate time.
-     *
+     * 是否可用
      * @return <code>true</code> if this Scheduler is enabled and ready to begin validation at the appropriate time,
      * <code>false</code> otherwise.
      */

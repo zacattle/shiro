@@ -18,6 +18,8 @@
  */
 package org.apache.shiro.realm;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -28,12 +30,10 @@ import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.lang.util.Initializable;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -107,6 +107,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * If this lazy eviction capability of the cache product is not sufficient and you want discrete behavior
  * (highly recommended for authentication data), ensure that the return values from those two methods are identical in
  * the subclass implementation.
+ * Realm添加认证过程相关功能
  *
  * @since 0.2
  */
@@ -120,7 +121,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
 
     /**
      * The default suffix appended to the realm name used for caching authentication data.
-     *
+     * 
      * @since 1.2
      */
     private static final String DEFAULT_AUTHENTICATION_CACHE_SUFFIX = ".authenticationCache";
@@ -130,16 +131,18 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      */
     private CredentialsMatcher credentialsMatcher;
 
-
+    // 认证信息缓存
     private Cache<Object, AuthenticationInfo> authenticationCache;
-
+    // 是否缓存认证信息
     private boolean authenticationCachingEnabled;
+    // 认证信息缓存的名字
     private String authenticationCacheName;
 
     /**
      * The class that this realm supports for authentication tokens.  This is used by the
      * default implementation of the {@link Realm#supports(org.apache.shiro.authc.AuthenticationToken)} method to
      * determine whether or not the given authentication token is supported by this realm.
+     * 身份信息识别类
      */
     private Class<? extends AuthenticationToken> authenticationTokenClass;
 

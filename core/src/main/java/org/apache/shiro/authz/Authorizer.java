@@ -18,10 +18,10 @@
  */
 package org.apache.shiro.authz;
 
-import org.apache.shiro.subject.PrincipalCollection;
-
 import java.util.Collection;
 import java.util.List;
+
+import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * An <tt>Authorizer</tt> performs authorization (access control) operations for any given Subject
@@ -42,7 +42,7 @@ import java.util.List;
  *
  * <p>These overloaded *Permission methods <em>do</em> forego type-safety for the benefit of convenience and simplicity,
  * so you should choose which ones to use based on your preferences and needs.
- *
+ * 权限管理
  * @since 0.1
  */
 public interface Authorizer {

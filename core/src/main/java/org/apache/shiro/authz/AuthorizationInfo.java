@@ -50,6 +50,7 @@ import java.util.Collection;
  * <code>AuthenticationInfo</code> and <code>AuthorizationInfo</code>.  Whether you choose to implement these two
  * interfaces separately or implement the one <code>Account</code> interface for a given <code>Realm</code> is
  * entirely based on your application's needs or your preferences.
+ * 权限信息
  *
  * @see org.apache.shiro.authc.AuthenticationInfo AuthenticationInfo
  * @see org.apache.shiro.authc.Account

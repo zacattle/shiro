@@ -18,12 +18,12 @@
  */
 package org.apache.shiro.authc.pam;
 
+import java.util.Collection;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.realm.Realm;
-
-import java.util.Collection;
 
 
 /**
@@ -33,6 +33,7 @@ import java.util.Collection;
  * <p>The {@code ModularRealmAuthenticator} will consult implementations of this interface on what to do during each
  * interaction with the configured Realms.  This allows a pluggable strategy of whether or not an authentication
  * attempt must be successful for all realms, only 1 or more realms, no realms, etc.
+ * 认证过程策略
  *
  * @see AllSuccessfulStrategy
  * @see AtLeastOneSuccessfulStrategy

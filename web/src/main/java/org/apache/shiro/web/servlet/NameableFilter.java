@@ -18,16 +18,16 @@
  */
 package org.apache.shiro.web.servlet;
 
-import org.apache.shiro.lang.util.Nameable;
-
 import javax.servlet.FilterConfig;
+
+import org.apache.shiro.lang.util.Nameable;
 
 /**
  * Allows a filter to be named via JavaBeans-compatible
  * {@link #getName()}/{@link #setName(String)} methods.  If no name is specified, the name of the filter will
  * default to the name given to it in {@code web.xml} (the {@code FilterConfig}'s
  * {@link javax.servlet.FilterConfig#getFilterName() filterName}).
- *
+ * 添加自动设置名字逻辑
  * @since 1.0
  */
 public abstract class NameableFilter extends AbstractFilter implements Nameable {

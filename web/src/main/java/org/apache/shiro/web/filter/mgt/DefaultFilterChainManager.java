@@ -18,22 +18,23 @@
  */
 package org.apache.shiro.web.filter.mgt;
 
-import org.apache.shiro.config.ConfigurationException;
-import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.lang.util.Nameable;
-import org.apache.shiro.lang.util.StringUtils;
-import org.apache.shiro.web.filter.PathConfigProcessor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+
+import org.apache.shiro.config.ConfigurationException;
+import org.apache.shiro.lang.util.Nameable;
+import org.apache.shiro.lang.util.StringUtils;
+import org.apache.shiro.util.CollectionUtils;
+import org.apache.shiro.web.filter.PathConfigProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Default {@link FilterChainManager} implementation maintaining a map of {@link Filter Filter} instances
@@ -51,7 +52,7 @@ public class DefaultFilterChainManager implements FilterChainManager {
     private FilterConfig filterConfig;
 
     private Map<String, Filter> filters; //pool of filters available for creating chains
-
+    // 过滤器链集合
     private Map<String, NamedFilterList> filterChains; //key: chain name, value: chain
 
     public DefaultFilterChainManager() {

@@ -18,14 +18,15 @@
  */
 package org.apache.shiro.web.servlet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Filter base class that guarantees to be just executed once per request,
@@ -41,6 +42,7 @@ import java.io.IOException;
  * for any given request.
  * <p/>
  * <b>NOTE</b> This class was initially borrowed from the Spring framework but has continued modifications.
+ * 保证该Filter对一个请求只执行一次
  *
  * @since 0.1
  */
@@ -53,7 +55,7 @@ public abstract class OncePerRequestFilter extends NameableFilter {
 
     /**
      * Suffix that gets appended to the filter name for the "already filtered" request attribute.
-     *
+     * 名字key的后缀
      * @see #getAlreadyFilteredAttributeName
      */
     public static final String ALREADY_FILTERED_SUFFIX = ".FILTERED";
@@ -107,10 +109,12 @@ public abstract class OncePerRequestFilter extends NameableFilter {
     public final void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String alreadyFilteredAttributeName = getAlreadyFilteredAttributeName();
+        // 说明已经执行过
         if ( request.getAttribute(alreadyFilteredAttributeName) != null ) {
             log.trace("Filter '{}' already executed.  Proceeding without invoking this filter.", getName());
             filterChain.doFilter(request, response);
         } else //noinspection deprecation
+        	// 设置不进行过滤
             if (/* added in 1.2: */ !isEnabled(request, response) ||
                 /* retain backwards compatibility: */ shouldNotFilter(request) ) {
             log.debug("Filter '{}' is not enabled for the current request.  Proceeding without invoking this filter.",
@@ -119,6 +123,7 @@ public abstract class OncePerRequestFilter extends NameableFilter {
         } else {
             // Do invoke this filter...
             log.trace("Filter '{}' not yet executed.  Executing now.", getName());
+            // 设置已执行过滤标识
             request.setAttribute(alreadyFilteredAttributeName, Boolean.TRUE);
 
             try {
@@ -200,7 +205,7 @@ public abstract class OncePerRequestFilter extends NameableFilter {
      * Same contract as for
      * {@link #doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)},
      * but guaranteed to be invoked only once per request.
-     *
+     * 执行过滤的过程，留给子类实现
      * @param request  incoming {@code ServletRequest}
      * @param response outgoing {@code ServletResponse}
      * @param chain    the {@code FilterChain} to execute

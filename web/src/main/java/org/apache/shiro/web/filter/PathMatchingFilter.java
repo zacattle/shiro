@@ -18,6 +18,15 @@
  */
 package org.apache.shiro.web.filter;
 
+import static org.apache.shiro.lang.util.StringUtils.split;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.Filter;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 import org.apache.shiro.util.AntPathMatcher;
 import org.apache.shiro.util.PatternMatcher;
 import org.apache.shiro.web.servlet.AdviceFilter;
@@ -26,17 +35,9 @@ import org.owasp.encoder.Encode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.Filter;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static org.apache.shiro.lang.util.StringUtils.split;
-
 /**
  * <p>Base class for Filters that will process only specified paths and allow all others to pass through.</p>
- *
+ * 针对指定的路径进行过滤的逻辑抽象类
  * @since 0.9
  */
 public abstract class PathMatchingFilter extends AdviceFilter implements PathConfigProcessor {
@@ -45,11 +46,12 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * Log available to this class only
      */
     private static final Logger log = LoggerFactory.getLogger(PathMatchingFilter.class);
-
+    // 路径分隔符
     private static final String DEFAULT_PATH_SEPARATOR = "/";
 
     /**
      * PatternMatcher used in determining which paths to react to for a given request.
+     * 路径匹配器，执行路径是否匹配的逻辑
      */
     protected PatternMatcher pathMatcher = new AntPathMatcher();
 
@@ -60,6 +62,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * <p>To put it another way, the keys are the paths (urls) that this Filter will process.
      * <p>The values are filter-specific data that this Filter should use when processing the corresponding
      * key (path).  The values can be null if no Filter-specific config was specified for that url.
+     * 指定需要进行处理url路径的及配置的集合
      */
     protected Map<String, Object> appliedPaths = new LinkedHashMap<String, Object>();
 
@@ -76,7 +79,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * <p/>
      * this.{@link #appliedPaths appliedPaths}.put(path, values);
      * </code></pre>
-     *
+     * 处理指定路径的配置信息
      * @param path   the application context path to match for executing this filter.
      * @param config the specified for <em>this particular filter only</em> for the given <code>path</code>
      * @return this configured filter.
@@ -97,7 +100,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * This implementation merely delegates to
      * {@link WebUtils#getPathWithinApplication(javax.servlet.http.HttpServletRequest) WebUtils.getPathWithinApplication(request)},
      * but can be overridden by subclasses for custom logic.
-     *
+     * 得到请求路径
      * @param request the incoming <code>ServletRequest</code>
      * @return the context path within the application.
      */
@@ -202,7 +205,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
     private boolean isFilterChainContinued(ServletRequest request, ServletResponse response,
                                            String path, Object pathConfig) throws Exception {
 
-        if (isEnabled(request, response, path, pathConfig)) { //isEnabled check added in 1.2
+        if (isEnabled(request, response, path, pathConfig)) { //isEnabled check added in 1.2 是否禁用该Filter校验
             if (log.isTraceEnabled()) {
                 log.trace("Filter '{}' is enabled for the current request under path '{}' with config [{}].  " +
                         "Delegating to subclass implementation for 'onPreHandle' check.",
@@ -210,6 +213,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
             }
             //The filter is enabled for this specific request, so delegate to subclass implementations
             //so they can decide if the request should continue through the chain or not:
+            // 委托子类实现前缀过滤
             return onPreHandle(request, response, pathConfig);
         }
 
