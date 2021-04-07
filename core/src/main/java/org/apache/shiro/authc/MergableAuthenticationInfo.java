@@ -39,7 +39,7 @@ public interface MergableAuthenticationInfo extends AuthenticationInfo {
      * that the merge occurs is up to the implementation, but typically it involves combining
      * the principals and credentials together in this instance.  The <code>info</code> argument should
      * not be modified in any way.
-     *
+     * 合并认证信息
      * @param info the info that should be merged into this instance.
      */
     void merge(AuthenticationInfo info);

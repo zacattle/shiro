@@ -41,7 +41,7 @@ public interface SaltedAuthenticationInfo extends AuthenticationInfo {
 
     /**
      * Returns the salt used to salt the account's credentials or {@code null} if no salt was used.
-     *
+     * 加密的盐
      * @return the salt used to salt the account's credentials or {@code null} if no salt was used.
      */
     ByteSource getCredentialsSalt();

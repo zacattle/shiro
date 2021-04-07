@@ -18,12 +18,12 @@
  */
 package org.apache.shiro.authc;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 
 /**
@@ -248,7 +248,7 @@ public abstract class AbstractAuthenticator implements Authenticator, LogoutAwar
      * authentication instead of returning {@code null}.  A {@code null} return value indicates
      * a configuration or programming error, since {@code AuthenticationException}s should
      * indicate any expected problem (such as an unknown account or username, or invalid password, etc).
-     *
+     * 执行认证过程
      * @param token the authentication token encapsulating the user's login information.
      * @return an {@code AuthenticationInfo} object encapsulating the user's account information
      *         important to Shiro.

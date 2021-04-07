@@ -44,6 +44,7 @@ public class PasswordMatcher implements CredentialsMatcher {
         PasswordService service = ensurePasswordService();
 
         Object submittedPassword = getSubmittedPassword(token);
+        // 保存的密码
         Object storedCredentials = getStoredPassword(info);
         assertStoredCredentialsType(storedCredentials);
 

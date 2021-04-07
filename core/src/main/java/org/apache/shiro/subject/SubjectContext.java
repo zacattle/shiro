@@ -18,13 +18,13 @@
  */
 package org.apache.shiro.subject;
 
+import java.io.Serializable;
+import java.util.Map;
+
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.Session;
-
-import java.io.Serializable;
-import java.util.Map;
 
 /**
  * A {@code SubjectContext} is a 'bucket' of data presented to a {@link SecurityManager} which interprets
@@ -51,7 +51,7 @@ import java.util.Map;
  * <b>USAGE</b>: Most Shiro end-users will never use a {@code SubjectContext} instance directly and instead will use a
  * {@link Subject.Builder} (which internally uses a {@code SubjectContext}) and build {@code Subject} instances that
  * way.
- *
+ * Subject构建信息持有类
  * @see org.apache.shiro.mgt.SecurityManager#createSubject SecurityManager.createSubject
  * @see org.apache.shiro.mgt.SubjectFactory SubjectFactory
  * @since 1.0

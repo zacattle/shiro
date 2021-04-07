@@ -67,7 +67,7 @@ public interface SecurityManager extends Authenticator, Authorizer, SessionManag
      * acquiring the Subject by calling {@link org.apache.shiro.SecurityUtils#getSubject() SecurityUtils.getSubject()}).
      * <p/>
      * Framework developers on the other hand might find calling this method directly useful in certain cases.
-     *
+     * 登录
      * @param subject             the subject against which the authentication attempt will occur
      * @param authenticationToken the token representing the Subject's principal(s) and credential(s)
      * @return the subject instance reflecting the authenticated state after a successful attempt
@@ -85,7 +85,7 @@ public interface SecurityManager extends Authenticator, Authorizer, SessionManag
      * {@code SecurityManager} directly.
      * <p/>
      * Framework developers on the other hand might find calling this method directly useful in certain cases.
-     *
+     * 退出
      * @param subject the subject to log out.
      * @since 1.0
      */
@@ -102,7 +102,7 @@ public interface SecurityManager extends Authenticator, Authorizer, SessionManag
      * After calling this method, the returned instance is <em>not</em> bound to the application for further use.
      * Callers are expected to know that {@code Subject} instances have local scope only and any
      * other further use beyond the calling method must be managed explicitly.
-     *
+     * 创建Subject
      * @param context any data needed to direct how the Subject should be constructed.
      * @return the {@code Subject} instance reflecting the specified initialization data.
      * @see SubjectFactory#createSubject(SubjectContext)

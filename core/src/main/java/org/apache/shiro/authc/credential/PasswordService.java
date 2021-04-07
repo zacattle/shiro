@@ -104,7 +104,7 @@ public interface PasswordService {
      * userAccount.setPassword(encryptedValue);
      * userAccount.save(); //create or update to your data store
      * </pre>
-     *
+     * 加密
      * @param plaintextPassword the raw password as 'byte-backed' object (String, character array, {@link ByteSource},
      *                          etc) usually acquired from your application's 'new user' or 'password reset' workflow.
      * @return the encrypted password, formatted for storage.
@@ -133,7 +133,7 @@ public interface PasswordService {
      * char[] submittedPasswordCharacters = ...
      * passwordService.passwordsMatch(submittedPasswordCharacters, encryptedPassword);
      * </pre>
-     *
+     * 密码校验
      * @param submittedPlaintext a raw/plaintext password submitted by an end user/Subject.
      * @param encrypted          the previously encrypted password known to be associated with an account.
      *                           This value is expected to have been previously generated from the

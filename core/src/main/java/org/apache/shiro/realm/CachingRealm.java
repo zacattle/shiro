@@ -177,7 +177,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
 
     /**
      * This implementation does nothing - it is a template to be overridden by subclasses if necessary.
-     *
+     * 清除缓存
      * @param principals principals the principals of the account for which to clear any cached data.
      * @since 1.2
      */

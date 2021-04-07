@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  * threads in a pooled or reusable threaded environment, the application (or more likely a framework) must
  * bind and remove any necessary values at the beginning and end of stack
  * execution, respectively (i.e. individually explicitly or all via the <tt>clear</tt> method).</p>
- *
+ * 当前线程上下文
  * @see #remove()
  * @since 0.1
  */
@@ -65,7 +65,7 @@ public abstract class ThreadContext {
     /**
      * Returns the ThreadLocal Map. This Map is used internally to bind objects
      * to the current thread by storing each object under a unique key.
-     *
+     * 得到当前线程信息Map
      * @return the map of bound resources
      */
     public static Map<Object, Object> getResources() {
@@ -107,6 +107,9 @@ public abstract class ThreadContext {
         return perThreadResources != null ? perThreadResources.get(key) : null;
     }
 
+    /**
+     * 重置当前线程信息
+     */
     private static void ensureResourcesInitialized(){
         if (resources.get() == null){
            resources.set(new HashMap<Object, Object>());

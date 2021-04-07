@@ -23,7 +23,7 @@ import java.util.Collection;
 
 /**
  * A {@link PrincipalCollection} that allows modification.
- *
+ * 多个身份信息集合
  * @since 0.9
  */
 public interface MutablePrincipalCollection extends PrincipalCollection {

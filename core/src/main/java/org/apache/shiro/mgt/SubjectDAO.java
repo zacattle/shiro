@@ -31,7 +31,7 @@ import org.apache.shiro.subject.Subject;
  * It should be noted that this component is used by {@code SecurityManager} implementations to manage Subject
  * state persistence.  It does <em>not</em> make Subject instances accessible to the
  * application (e.g. via {@link org.apache.shiro.SecurityUtils#getSubject() SecurityUtils.getSubject()}).
- *
+ * Subject实体保存类
  * @see DefaultSubjectDAO
  * @since 1.2
  */

@@ -131,9 +131,9 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      */
     private CredentialsMatcher credentialsMatcher;
 
-    // 认证信息缓存
+    // 认证信息缓存 key值通常情况下为 AuthenticationToken.getPrincipal的值
     private Cache<Object, AuthenticationInfo> authenticationCache;
-    // 是否缓存认证信息
+    // 是否缓存认证信息 默认false 保持兼容性
     private boolean authenticationCachingEnabled;
     // 认证信息缓存的名字
     private String authenticationCacheName;
@@ -142,7 +142,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * The class that this realm supports for authentication tokens.  This is used by the
      * default implementation of the {@link Realm#supports(org.apache.shiro.authc.AuthenticationToken)} method to
      * determine whether or not the given authentication token is supported by this realm.
-     * 身份信息识别类
+     * 身份信息识别类 默认为 UsernamePasswordToken.class
      */
     private Class<? extends AuthenticationToken> authenticationTokenClass;
 
@@ -503,7 +503,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * Caches the specified info if authentication caching
      * {@link #isAuthenticationCachingEnabled(org.apache.shiro.authc.AuthenticationToken, org.apache.shiro.authc.AuthenticationInfo) isEnabled}
      * for the specific token/info pair and a cache instance is available to be used.
-     *
+     * 添加缓存信息
      * @param token the authentication token submitted which resulted in a successful authentication attempt.
      * @param info  the AuthenticationInfo to cache as a result of the successful authentication attempt.
      * @since 1.2
@@ -530,7 +530,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * The default implementation simply delegates to {@link #isAuthenticationCachingEnabled()}, the general-case
      * authentication caching setting.  Subclasses can override this to turn on or off caching at runtime
      * based on the specific submitted runtime values.
-     *
+     * 是否缓存认证信息
      * @param token the submitted authentication token
      * @param info  the {@code AuthenticationInfo} acquired from data source lookup via
      *              {@link #doGetAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken)}
@@ -581,6 +581,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
         }
 
         if (info != null) {
+        	// 验证密码 存在 记住我 的情况
             assertCredentialsMatch(token, info);
         } else {
             log.debug("No AuthenticationInfo found for submitted AuthenticationToken [{}].  Returning null.", token);
@@ -592,7 +593,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
     /**
      * Asserts that the submitted {@code AuthenticationToken}'s credentials match the stored account
      * {@code AuthenticationInfo}'s credentials, and if not, throws an {@link AuthenticationException}.
-     *
+     * 密码校验
      * @param token the submitted authentication token
      * @param info  the AuthenticationInfo corresponding to the given {@code token}
      * @throws AuthenticationException if the token's credentials do not match the stored account credentials.
@@ -639,7 +640,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * <b>NOTE:</b> If you want to be able to invalidate an account's cached {@code AuthenticationInfo} on logout, you
      * must ensure that this method returns the same value as the
      * {@link #getAuthenticationCacheKey(org.apache.shiro.authc.AuthenticationToken)} method!
-     *
+     * 得到认证缓存信息的key
      * @param principals the principals of the account for which to set or remove cached {@code AuthenticationInfo}.
      * @return the cache key to use when looking up cached {@link AuthenticationInfo} instances.
      * @since 1.2
@@ -681,7 +682,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * If you wish to clear out all associated cached data (and not just authentication data), use the
      * {@link #clearCache(org.apache.shiro.subject.PrincipalCollection)} method instead (which will in turn call this
      * method by default).
-     *
+     * 移除缓存的认证信息
      * @param principals the principals of the account for which to clear the cached AuthorizationInfo.
      * @see #clearCache(org.apache.shiro.subject.PrincipalCollection)
      * @since 1.2
@@ -706,7 +707,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * log-in logic in addition to just retrieving data - it is up to the Realm implementation.
      * <p/>
      * A {@code null} return value means that no account could be associated with the specified token.
-     *
+     * 得到认证信息 从各种数据源
      * @param token the authentication token containing the user's principal and credentials.
      * @return an {@link AuthenticationInfo} object containing account data resulting from the
      *         authentication ONLY if the lookup is successful (i.e. account exists and is valid, etc.)

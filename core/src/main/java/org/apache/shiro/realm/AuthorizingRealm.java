@@ -18,20 +18,35 @@
  */
 package org.apache.shiro.realm;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.authz.*;
-import org.apache.shiro.authz.permission.*;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.Authorizer;
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.authz.permission.PermissionResolver;
+import org.apache.shiro.authz.permission.PermissionResolverAware;
+import org.apache.shiro.authz.permission.RolePermissionResolver;
+import org.apache.shiro.authz.permission.RolePermissionResolverAware;
+import org.apache.shiro.authz.permission.WildcardPermissionResolver;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.lang.util.Initializable;
 import org.apache.shiro.lang.util.StringUtils;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -75,9 +90,12 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
     ============================================*/
     /**
      * The cache used by this realm to store AuthorizationInfo instances associated with individual Subject principals.
+     * 是否开启权限信息缓存
      */
     private boolean authorizationCachingEnabled;
+    // 权限信息缓存
     private Cache<Object, AuthorizationInfo> authorizationCache;
+    // 权限信息缓存名
     private String authorizationCacheName;
 
     private PermissionResolver permissionResolver;
@@ -345,6 +363,7 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
                 if (log.isTraceEnabled()) {
                     log.trace("Caching authorization info for principals: [" + principals + "].");
                 }
+                // 加入缓存
                 Object key = getAuthorizationCacheKey(principals);
                 cache.put(key, info);
             }
@@ -392,7 +411,7 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
      * Retrieves the AuthorizationInfo for the given principals from the underlying data store.  When returning
      * an instance from this method, you might want to consider using an instance of
      * {@link org.apache.shiro.authz.SimpleAuthorizationInfo SimpleAuthorizationInfo}, as it is suitable in most cases.
-     *
+     * 得到权限信息
      * @param principals the primary identifying principals of the AuthorizationInfo that should be retrieved.
      * @return the AuthorizationInfo associated with this principals.
      * @see org.apache.shiro.authz.SimpleAuthorizationInfo

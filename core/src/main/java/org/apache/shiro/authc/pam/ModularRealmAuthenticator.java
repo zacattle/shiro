@@ -59,7 +59,7 @@ import org.slf4j.LoggerFactory;
  * <p/>
  * As most multi-realm applications require at least one Realm authenticates successfully, the default
  * implementation is the {@link AtLeastOneSuccessfulStrategy}.
- *
+ * 多realm认证器
  * @see #setRealms
  * @see AtLeastOneSuccessfulStrategy
  * @see AllSuccessfulStrategy
@@ -85,6 +85,7 @@ public class ModularRealmAuthenticator extends AbstractAuthenticator {
     /**
      * The authentication strategy to use during authentication attempts, defaults to a
      * {@link org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy} instance.
+     * 认证策略，
      */
     private AuthenticationStrategy authenticationStrategy;
 
@@ -98,6 +99,7 @@ public class ModularRealmAuthenticator extends AbstractAuthenticator {
      * {@link org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy} by default.
      */
     public ModularRealmAuthenticator() {
+    	// 默认的认证策略是知道一个realm通过认证
         this.authenticationStrategy = new AtLeastOneSuccessfulStrategy();
     }
 
@@ -155,7 +157,7 @@ public class ModularRealmAuthenticator extends AbstractAuthenticator {
     /**
      * Used by the internal {@link #doAuthenticate} implementation to ensure that the {@code realms} property
      * has been set.  The default implementation ensures the property is not null and not empty.
-     *
+     * 断言realm
      * @throws IllegalStateException if the {@code realms} property is configured incorrectly.
      */
 
@@ -171,7 +173,7 @@ public class ModularRealmAuthenticator extends AbstractAuthenticator {
     /**
      * Performs the authentication attempt by interacting with the single configured realm, which is significantly
      * simpler than performing multi-realm logic.
-     *
+     * 只存在一个realm时
      * @param realm the realm to consult for AuthenticationInfo.
      * @param token the submitted AuthenticationToken representing the subject's (user's) log-in principals and credentials.
      * @return the AuthenticationInfo associated with the user account corresponding to the specified {@code token}
@@ -195,7 +197,7 @@ public class ModularRealmAuthenticator extends AbstractAuthenticator {
     /**
      * Performs the multi-realm authentication attempt by calling back to a {@link AuthenticationStrategy} object
      * as each realm is consulted for {@code AuthenticationInfo} for the specified {@code token}.
-     *
+     * 存在多个realm时
      * @param realms the multiple realms configured on this Authenticator instance.
      * @param token  the submitted AuthenticationToken representing the subject's (user's) log-in principals and credentials.
      * @return an aggregated AuthenticationInfo instance representing account data across all the successfully

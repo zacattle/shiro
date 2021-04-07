@@ -33,7 +33,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
  * someone reading your logs.  This is good practice anyway, and account principals should rarely (if ever) be printed
  * out for any reason.  If you're using Shiro's default implementations of this interface, they only ever print the
  * account {@link #getPrincipals() principals}, so you do not need to do anything additional.
- *
+ * 账户功能接口
  * @see SimpleAccount
  * @since 0.9
  */

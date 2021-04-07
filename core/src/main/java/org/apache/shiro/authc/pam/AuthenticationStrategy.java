@@ -51,7 +51,7 @@ public interface AuthenticationStrategy {
      * course of authentication attempts across the multiple realms.  It will be passed into the
      * {@link #beforeAttempt} calls, allowing inspection of the aggregated account data up to that point in the
      * multi-realm authentication, allowing any logic to be executed accordingly.
-     *
+     * 全部realm执行之前
      * @param realms the Realms that will be consulted during the authentication process for the specified token.
      * @param token  the Principal/Credential representation to be used during authentication for a corresponding subject.
      * @return an empty AuthenticationInfo object that will populated with data from multiple realms.
@@ -66,7 +66,7 @@ public interface AuthenticationStrategy {
      * <p>This method returns an {@code AuthenticationInfo} object that will be used for further interaction with realms.  Most
      * implementations will merely return the {@code aggregate} method argument if they don't have a need to
      * manipulate it.
-     *
+     * 每个realm执行之前
      * @param realm     the realm that will be consulted for {@code AuthenticationInfo} for the specified {@code token}.
      * @param token     the {@code AuthenticationToken} submitted for the subject attempting system log-in.
      * @param aggregate the aggregated AuthenticationInfo object being used across the multi-realm authentication attempt
@@ -85,7 +85,7 @@ public interface AuthenticationStrategy {
      * <p>This method returns an {@code AuthenticationInfo} object that will be used for further interaction with realms.  Most
      * implementations will merge the {@code singleRealmInfo} into the {@code aggregateInfo} and
      * just return the {@code aggregateInfo} for continued use throughout the authentication process.</p>
-     *
+     * 每个realm执行之后
      * @param realm           the realm that was just consulted for {@code AuthenticationInfo} for the given {@code token}.
      * @param token           the {@code AuthenticationToken} submitted for the subject attempting system log-in.
      * @param singleRealmInfo the info returned from a single realm.
@@ -106,7 +106,7 @@ public interface AuthenticationStrategy {
      * <p>Returns the final AuthenticationInfo object that will be returned from the Authenticator to the authenticate() caller.
      * This is most likely the aggregate AuthenticationInfo object that has been populated by many realms, but the actual return value is
      * always up to the implementation.
-     *
+     * 全部realm执行之后
      * @param token     the {@code AuthenticationToken} submitted for the subject attempting system log-in.
      * @param aggregate the aggregate {@code AuthenticationInfo} instance populated by all realms during the log-in attempt.
      * @return the final {@code AuthenticationInfo} object to return to the Authenticator.authenticate() caller.

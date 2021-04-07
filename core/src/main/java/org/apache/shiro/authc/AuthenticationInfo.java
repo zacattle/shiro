@@ -19,9 +19,9 @@
 
 package org.apache.shiro.authc;
 
-import org.apache.shiro.subject.PrincipalCollection;
-
 import java.io.Serializable;
+
+import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * <code>AuthenticationInfo</code> represents a Subject's (aka user's) stored account information relevant to the
@@ -50,7 +50,7 @@ import java.io.Serializable;
  * someone reading your logs.  This is good practice anyway, and account credentials should rarely (if ever) be printed
  * out for any reason.  If you're using Shiro's default implementations of this interface, they only ever print the
  * account {@link #getPrincipals() principals}, so you do not need to do anything additional.</p>
- *
+ * 认证信息
  * @see org.apache.shiro.authz.AuthorizationInfo AuthorizationInfo
  * @see Account
  * @since 0.9
@@ -64,7 +64,7 @@ public interface AuthenticationInfo extends Serializable {
      * <p/>
      * The returned PrincipalCollection should <em>not</em> contain any credentials used to verify principals, such
      * as passwords, private keys, etc.  Those should be instead returned by {@link #getCredentials() getCredentials()}.
-     *
+     * 身份信息
      * @return all principals associated with the corresponding Subject.
      */
     PrincipalCollection getPrincipals();
@@ -74,7 +74,7 @@ public interface AuthenticationInfo extends Serializable {
      * {@link #getPrincipals() principals} associated with the Subject, such as a password or private key.  Credentials
      * are used by Shiro particularly during the authentication process to ensure that submitted credentials
      * during a login attempt match exactly the credentials here in the <code>AuthenticationInfo</code> instance.
-     *
+     * 密码
      * @return the credentials associated with the corresponding Subject.
      */
     Object getCredentials();

@@ -78,6 +78,7 @@ public interface HashingPasswordService extends PasswordService {
      * String or character array representing passwords (character arrays are often a safer way to represent passwords
      * as they can be cleared/nulled-out after use.  Any argument type supported by
      * {@link ByteSource.Util#isCompatible(Object)} is valid.
+     * 执行密码校验
      *
      * @param plaintext a raw/plaintext password submitted by an end user/Subject.
      * @param savedPasswordHash  the previously hashed password known to be associated with an account.

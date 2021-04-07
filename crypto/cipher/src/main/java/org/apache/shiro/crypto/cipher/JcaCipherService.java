@@ -18,21 +18,22 @@
  */
 package org.apache.shiro.crypto.cipher;
 
-import org.apache.shiro.crypto.CryptoException;
-import org.apache.shiro.lang.util.ByteSource;
-import org.apache.shiro.lang.util.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.crypto.CipherInputStream;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Key;
 import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
+
+import javax.crypto.CipherInputStream;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.shiro.crypto.CryptoException;
+import org.apache.shiro.lang.util.ByteSource;
+import org.apache.shiro.lang.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Abstract {@code CipherService} implementation utilizing Java's JCA APIs.
@@ -64,7 +65,7 @@ import java.security.spec.AlgorithmParameterSpec;
  * vectors are always specified as a byte array, so ensure that if you set this property, that the value is a multiple
  * of {@code 8} to ensure that the IV can be correctly represented as a byte array (the
  * {@link #setInitializationVectorSize(int) setInitializationVectorSize} mutator method enforces this).
- *
+ * 加解密逻辑抽象实现类
  * @since 1.0
  */
 public abstract class JcaCipherService implements CipherService {

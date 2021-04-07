@@ -18,21 +18,21 @@
  */
 package org.apache.shiro.subject;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.Callable;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.Permission;
+import org.apache.shiro.lang.util.StringUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.mgt.SubjectFactory;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
-import org.apache.shiro.lang.util.StringUtils;
-
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * A {@code Subject} represents state and security operations for a <em>single</em> application user.
@@ -54,7 +54,7 @@ import java.util.concurrent.Callable;
  * <p/>
  * These overloaded *Permission methods forgo type-safety for the benefit of convenience and simplicity,
  * so you should choose which ones to use based on your preferences and needs.
- *
+ * 主体（包含认证和权限信息）
  * @since 0.1
  */
 public interface Subject {
@@ -84,7 +84,7 @@ public interface Subject {
      * <p/>
      * Most implementations will simply return
      * <code>{@link #getPrincipals()}.{@link org.apache.shiro.subject.PrincipalCollection#getPrimaryPrincipal() getPrimaryPrincipal()}</code>
-     *
+     * 得到身份标识信息
      * @return this Subject's application-specific unique identity.
      * @see org.apache.shiro.subject.PrincipalCollection#getPrimaryPrincipal()
      */
@@ -98,7 +98,7 @@ public interface Subject {
      * The word &quot;principals&quot; is nothing more than a fancy security term for identifying attributes associated
      * with a Subject, aka, application user.  For example, user id, a surname (family/last name), given (first) name,
      * social security number, nickname, username, etc, are all examples of a principal.
-     *
+     * 得到身份标识信息集合
      * @return all of this Subject's principals (identifying attributes).
      * @see #getPrincipal()
      * @see org.apache.shiro.subject.PrincipalCollection#getPrimaryPrincipal()
@@ -322,7 +322,7 @@ public interface Subject {
      * Upon returning quietly, this {@code Subject} instance can be considered
      * authenticated and {@link #getPrincipal() getPrincipal()} will be non-null and
      * {@link #isAuthenticated() isAuthenticated()} will be {@code true}.
-     *
+     * 登录
      * @param token the token encapsulating the subject's principals and credentials to be passed to the
      *              Authentication subsystem for verification.
      * @throws org.apache.shiro.authc.AuthenticationException
@@ -338,7 +338,7 @@ public interface Subject {
      * Note that even if this Subject's identity has been remembered via 'remember me' services, this method will
      * still return {@code false} unless the user has actually logged in with proper credentials <em>during their
      * current session</em>.  See the {@link #isRemembered() isRemembered()} method JavaDoc for more.
-     *
+     * 是否已通过认证
      * @return {@code true} if this Subject proved their identity during their current session
      *         by providing valid credentials matching those known to the system, {@code false} otherwise.
      * @since 0.9
@@ -390,7 +390,7 @@ public interface Subject {
      * actually authenticated.  The only way to really guarantee you are who you say you are, and therefore allow you
      * access to sensitive account data, is to force you to perform an actual successful authentication.  You can
      * check this guarantee via the {@link #isAuthenticated() isAuthenticated()} method and not via this method.
-     *
+     * 是否记住我
      * @return {@code true} if this {@code Subject}'s identity (aka {@link #getPrincipals() principals}) is
      *         remembered from a successful authentication during a previous session, {@code false} otherwise.
      * @since 1.0
@@ -400,7 +400,7 @@ public interface Subject {
     /**
      * Returns the application {@code Session} associated with this Subject.  If no session exists when this
      * method is called, a new session will be created, associated with this Subject, and then returned.
-     *
+     * 得到session 如果没有 则创建一个新的
      * @return the application {@code Session} associated with this Subject.
      * @see #getSession(boolean)
      * @since 0.2
@@ -417,7 +417,7 @@ public interface Subject {
      * this {@code Subject} and then returned.</li>
      * <li>If no session exists and {@code create} is {@code false}, {@code null} is returned.</li>
      * </ul>
-     *
+     * 得到session
      * @param create boolean argument determining if a new session should be created or not if there is no existing session.
      * @return the application {@code Session} associated with this {@code Subject} or {@code null} based
      *         on the above described logic.
@@ -440,6 +440,7 @@ public interface Subject {
      * itself and not a reflection of Shiro's implementation.
      * <p/>
      * Non-HTTP environments may of course use a logged-out subject for login again if desired.
+     * 退出
      */
     void logout();
 
@@ -447,7 +448,7 @@ public interface Subject {
      * Associates the specified {@code Callable} with this {@code Subject} instance and then executes it on the
      * currently running thread.  If you want to execute the {@code Callable} on a different thread, it is better to
      * use the {@link #associateWith(Callable)} method instead.
-     *
+     * 当前线程执行Callable
      * @param callable the Callable to associate with this subject and then execute.
      * @param <V>      the type of return value the {@code Callable} will return
      * @return the resulting object returned by the {@code Callable}'s execution.
@@ -464,7 +465,7 @@ public interface Subject {
      * <b>Note</b>: This method is primarily provided to execute existing/legacy Runnable implementations.  It is better
      * for new code to use {@link #execute(Callable)} since that supports the ability to return values and catch
      * exceptions.
-     *
+     * 当前线程执行Runnable
      * @param runnable the {@code Runnable} to associate with this {@code Subject} and then execute.
      * @since 1.0
      */
@@ -520,7 +521,7 @@ public interface Subject {
      * <li>When you want a {@code Subject} to stop running as another identity, you can return to its previous
      * 'pre run as' identity by calling the {@link #releaseRunAs() releaseRunAs()} method.</li>
      * </ul>
-     *
+     * 以其他身份运行
      * @param principals the identity to 'run as', aka the identity to <em>assume</em> indefinitely.
      * @throws NullPointerException  if the specified principals collection is {@code null} or empty.
      * @throws IllegalStateException if this {@code Subject} does not yet have an identity of its own.
@@ -532,7 +533,7 @@ public interface Subject {
      * Returns {@code true} if this {@code Subject} is 'running as' another identity other than its original one or
      * {@code false} otherwise (normal {@code Subject} state).  See the {@link #runAs runAs} method for more
      * information.
-     *
+     * 是否以其他身份在运行
      * @return {@code true} if this {@code Subject} is 'running as' another identity other than its original one or
      *         {@code false} otherwise (normal {@code Subject} state).
      * @see #runAs
@@ -544,7 +545,7 @@ public interface Subject {
      * Returns the previous 'pre run as' identity of this {@code Subject} before assuming the current
      * {@link #runAs runAs} identity, or {@code null} if this {@code Subject} is not operating under an assumed
      * identity (normal state). See the {@link #runAs runAs} method for more information.
-     *
+     * 上一个身份
      * @return the previous 'pre run as' identity of this {@code Subject} before assuming the current
      *         {@link #runAs runAs} identity, or {@code null} if this {@code Subject} is not operating under an assumed
      *         identity (normal state).
@@ -559,7 +560,7 @@ public interface Subject {
      * <p/>
      * This method returns 'run as' (assumed) identity being released or {@code null} if this {@code Subject} is not
      * operating under an assumed identity.
-     *
+     * 退出指定身份
      * @return the 'run as' (assumed) identity being released or {@code null} if this {@code Subject} is not operating
      *         under an assumed identity.
      * @see #runAs

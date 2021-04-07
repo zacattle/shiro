@@ -18,20 +18,20 @@
  */
 package org.apache.shiro.authc;
 
-import org.apache.shiro.subject.MutablePrincipalCollection;
-import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.apache.shiro.lang.util.ByteSource;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.shiro.lang.util.ByteSource;
+import org.apache.shiro.subject.MutablePrincipalCollection;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 
 
 /**
  * Simple implementation of the {@link org.apache.shiro.authc.MergableAuthenticationInfo} interface that holds the principals and
  * credentials.
- *
+ * 简单认证信息类
  * @see org.apache.shiro.realm.AuthenticatingRealm
  * @since 0.9
  */
@@ -39,16 +39,18 @@ public class SimpleAuthenticationInfo implements MergableAuthenticationInfo, Sal
 
     /**
      * The principals identifying the account associated with this AuthenticationInfo instance.
+     * 身份信息集合
      */
     protected PrincipalCollection principals;
     /**
      * The credentials verifying the account principals.
+     * 密码信息
      */
     protected Object credentials;
 
     /**
      * Any salt used in hashing the credentials.
-     *
+     * 加密的盐
      * @since 1.1
      */
     protected ByteSource credentialsSalt;
@@ -68,7 +70,7 @@ public class SimpleAuthenticationInfo implements MergableAuthenticationInfo, Sal
      *
      * @param principal   the 'primary' principal associated with the specified realm.
      * @param credentials the credentials that verify the given principal.
-     * @param realmName   the realm from where the principal and credentials were acquired.
+     * @param realmName   the realm from where the principal and credentials were acquired. 得到认证信息的realm
      */
     public SimpleAuthenticationInfo(Object principal, Object credentials, String realmName) {
         this.principals = new SimplePrincipalCollection(principal, realmName);

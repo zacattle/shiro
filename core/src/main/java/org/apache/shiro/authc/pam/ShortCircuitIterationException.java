@@ -28,7 +28,7 @@ import org.apache.shiro.authc.AuthenticationException;
  * This is a signal to short circuit the authentication from proceeding 
  * with subsequent {@link org.apache.shiro.realm.Realm Realm}s 
  * after a first successful authentication.
- *
+ * {@link org.apache.shiro.authc.pam.FirstSuccessfulStrategy}使用的短路异常
  * @see org.apache.shiro.authc.pam.AuthenticationStrategy
  * @see org.apache.shiro.authc.pam.FirstSuccessfulStrategy
  * @since 1.4.1
