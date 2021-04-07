@@ -28,7 +28,7 @@ import org.apache.shiro.subject.SubjectContext;
 /**
  * A RememberMeManager is responsible for remembering a Subject's identity across that Subject's sessions with
  * the application.
- *
+ * 记住我功能
  * @since 0.9
  */
 public interface RememberMeManager {
@@ -39,7 +39,7 @@ public interface RememberMeManager {
      * <p/>
      * The context map is usually populated by a {@link Subject.Builder} implementation.
      * See the {@link SubjectFactory} class constants for Shiro's known map keys.
-     *
+     * 得到身份信息
      * @param subjectContext the contextual data, usually provided by a {@link Subject.Builder} implementation, that
      *                       is being used to construct a {@link Subject} instance.
      * @return he remembered principals or {@code null} if none could be acquired.
@@ -52,7 +52,7 @@ public interface RememberMeManager {
      * <p/>
      * The context map is usually populated by a {@link Subject.Builder} implementation.
      * See the {@link SubjectFactory} class constants for Shiro's known map keys.
-     *
+     * 清除指定已记住的标识信息
      * @param subjectContext the contextual data, usually provided by a {@link Subject.Builder} implementation, that
      *                       is being used to construct a {@link Subject} instance.
      * @since 1.0
@@ -62,7 +62,7 @@ public interface RememberMeManager {
     /**
      * Reacts to a successful authentication attempt, typically saving the principals to be retrieved ('remembered')
      * for future system access.
-     *
+     * 登录成功后做一些保存信息操作
      * @param subject the subject that executed a successful authentication attempt
      * @param token   the authentication token submitted resulting in a successful authentication attempt
      * @param info    the authenticationInfo returned as a result of the successful authentication attempt
@@ -73,7 +73,7 @@ public interface RememberMeManager {
     /**
      * Reacts to a failed authentication attempt, typically by forgetting any previously remembered principals for the
      * Subject.
-     *
+     * 登录失败 通常会移除之前的记住信息
      * @param subject the subject that executed the failed authentication attempt
      * @param token   the authentication token submitted resulting in the failed authentication attempt
      * @param ae      the authentication exception thrown as a result of the failed authentication attempt
@@ -84,7 +84,7 @@ public interface RememberMeManager {
     /**
      * Reacts to a Subject logging out of the application, typically by forgetting any previously remembered
      * principals for the Subject.
-     *
+     * 登出时 通常会移除之前的记住信息
      * @param subject the subject logging out.
      * @since 1.0
      */

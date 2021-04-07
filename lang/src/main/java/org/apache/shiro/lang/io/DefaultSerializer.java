@@ -22,7 +22,7 @@ import java.io.*;
 
 /**
  * Serializer implementation that uses the default JVM serialization mechanism (Object Input/Output Streams).
- *
+ * 序列化实现类 使用jvm序列化机制
  * @since 0.9
  */
 public class DefaultSerializer<T> implements Serializer<T> {

@@ -24,7 +24,7 @@ import java.io.InputStream;
 /**
  * A {@code ByteSource} wraps a byte array and provides additional encoding operations.  Most users will find the
  * {@link Util} inner class sufficient to construct ByteSource instances.
- *
+ * 包装一个字节数组 额外提供一些编码的方法，通常使用内部{@link Util}构建实例
  * @since 1.0
  */
 public interface ByteSource {
@@ -39,7 +39,7 @@ public interface ByteSource {
     /**
      * Returns the <a href="http://en.wikipedia.org/wiki/Hexadecimal">Hex</a>-formatted String representation of the
      * underlying wrapped byte array.
-     *
+     * 十六进制编码
      * @return the <a href="http://en.wikipedia.org/wiki/Hexadecimal">Hex</a>-formatted String representation of the
      *         underlying wrapped byte array.
      */
@@ -48,7 +48,7 @@ public interface ByteSource {
     /**
      * Returns the <a href="http://en.wikipedia.org/wiki/Base64">Base 64</a>-formatted String representation of the
      * underlying wrapped byte array.
-     *
+     * Base 64编码
      * @return the <a href="http://en.wikipedia.org/wiki/Base64">Base 64</a>-formatted String representation of the
      *         underlying wrapped byte array.
      */

@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
  * guaranteeing that no third party can decrypt your data.  You can generate your own key by calling the
  * {@code CipherService}'s {@link AesCipherService#generateNewKey() generateNewKey} method
  * and using that result as the {@link #setCipherKey cipherKey} configuration attribute.
- *
+ * 抽象实现类
  * @since 0.9
  */
 public abstract class AbstractRememberMeManager implements RememberMeManager {
@@ -74,16 +74,19 @@ public abstract class AbstractRememberMeManager implements RememberMeManager {
 
     /**
      * Cipher to use for encrypting/decrypting serialized byte arrays for added security
+     * 加解密
      */
     private CipherService cipherService;
 
     /**
      * Cipher encryption key to use with the Cipher when encrypting data
+     * 加密原始数据
      */
     private byte[] encryptionCipherKey;
 
     /**
      * Cipher decryption key to use with the Cipher when decrypting data
+     * 解密原始数据
      */
     private byte[] decryptionCipherKey;
 

@@ -76,11 +76,13 @@ public abstract class JcaCipherService implements CipherService {
 
     /**
      * Default key size (in bits) for generated keys.
+     * 默认生成的key长度 加解密用
      */
     private static final int DEFAULT_KEY_SIZE = 128;
 
     /**
      * Default size of the internal buffer (in bytes) used to transfer data between streams during stream operations
+     * 内部流之间转移数据的缓存数
      */
     private static final int DEFAULT_STREAMING_BUFFER_SIZE = 512;
 
@@ -88,16 +90,19 @@ public abstract class JcaCipherService implements CipherService {
 
     /**
      * Default SecureRandom algorithm name to use when acquiring the SecureRandom instance.
+     * 默认的随机算法机制
      */
     private static final String RANDOM_NUM_GENERATOR_ALGORITHM_NAME = "SHA1PRNG";
 
     /**
      * The name of the cipher algorithm to use for all encryption, decryption, and key operations
+     * 默认算法 加解密
      */
     private String algorithmName;
 
     /**
      * The size in bits (not bytes) of generated cipher keys
+     * 
      */
     private int keySize;
 
@@ -105,8 +110,9 @@ public abstract class JcaCipherService implements CipherService {
      * The size of the internal buffer (in bytes) used to transfer data from one stream to another during stream operations
      */
     private int streamingBufferSize;
-
+    // 是否自动生成盐，默认为true
     private boolean generateInitializationVectors;
+    // 默认的盐的长度
     private int initializationVectorSize;
 
 
@@ -274,7 +280,7 @@ public abstract class JcaCipherService implements CipherService {
      * {@link #getAlgorithmName() getAlgorithmName()}.  Block cipher implementations will want to override this method
      * to support appending cipher operation modes and padding schemes.
      *
-     * @param streaming if the transformation string is going to be used for a Cipher for stream-based encryption or not.
+     * @param streaming if the transformation string is going to be used for a Cipher for stream-based encryption or not. 加解密的内容是否是流
      * @return the transformation string to use with the {@link javax.crypto.Cipher#getInstance} invocation when
      *         creating a new {@code Cipher} instance.
      */
@@ -404,6 +410,7 @@ public abstract class JcaCipherService implements CipherService {
      *                         {@link #getTransformationString(boolean) getTransformationString} value.
      */
     private javax.crypto.Cipher newCipherInstance(boolean streaming) throws CryptoException {
+    	// 得到算法名
         String transformationString = getTransformationString(streaming);
         try {
             return javax.crypto.Cipher.getInstance(transformationString);
@@ -468,9 +475,9 @@ public abstract class JcaCipherService implements CipherService {
      * Initializes the JDK Cipher with the specified mode and key.  This is primarily a utility method to catch any
      * potential {@link java.security.InvalidKeyException InvalidKeyException} that might arise.
      *
-     * @param cipher the JDK Cipher to {@link javax.crypto.Cipher#init(int, java.security.Key) init}.
-     * @param mode   the Cipher mode
-     * @param key    the Cipher's Key
+     * @param cipher the JDK Cipher to {@link javax.crypto.Cipher#init(int, java.security.Key) init}. 加解密Cipher
+     * @param mode   the Cipher mode 算法
+     * @param key    the Cipher's Key 
      * @param spec   the JDK AlgorithmParameterSpec for cipher initialization (optional, may be null).
      * @param random the SecureRandom to use for cipher initialization (optional, may be null).
      * @throws CryptoException if the key is invalid
@@ -590,6 +597,7 @@ public abstract class JcaCipherService implements CipherService {
             throws CryptoException {
 
         javax.crypto.Cipher cipher = newCipherInstance(streaming);
+        // 秘钥处理
         java.security.Key jdkKey = new SecretKeySpec(key, getAlgorithmName());
         AlgorithmParameterSpec ivSpec = null;
 

@@ -80,7 +80,7 @@ import java.io.OutputStream;
  * understand unless you're a security expert.  Shiro hides these details from you, but allows you to configure them
  * if you want.</li>
  * </ul>
- *
+ * 加解密功能接口
  * @see BlowfishCipherService
  * @see AesCipherService
  * @since 1.0
@@ -91,8 +91,8 @@ public interface CipherService {
      * Decrypts encrypted data via the specified cipher key and returns the original (pre-encrypted) data.
      * Note that the key must be in a format understood by the CipherService implementation.
      *
-     * @param encrypted     the previously encrypted data to decrypt
-     * @param decryptionKey the cipher key used during decryption.
+     * @param encrypted     the previously encrypted data to decrypt 待解码数据
+     * @param decryptionKey the cipher key used during decryption. 解密使用key
      * @return a byte source representing the original form of the specified encrypted data.
      * @throws CryptoException if there is an error during decryption
      */
