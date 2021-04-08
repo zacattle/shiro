@@ -21,7 +21,7 @@ package org.apache.shiro.config.ogdl;
 /**
  * Basic String interpolation interface.  Typically implementations will use the Maven/Ant like notation: ${key}, but
  * This is up to the implementation.
- *
+ * 占位符解决器
  * @since 1.4
  */
 public interface Interpolator {

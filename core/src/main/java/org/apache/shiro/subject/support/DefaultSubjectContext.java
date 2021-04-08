@@ -41,11 +41,12 @@ import java.io.Serializable;
  * their data attribute as best as possible (for example, if {@link #getPrincipals} is invoked, if the principals aren't
  * in the backing map, it might check to see if there is a subject or session in the map and attempt to acquire the
  * principals from those objects).
- *
+ * {@link SubjectContext}默认实现类
  * @since 1.0
  */
 public class DefaultSubjectContext extends MapContext implements SubjectContext {
 
+	// 保存SecurityManager的key
     private static final String SECURITY_MANAGER = DefaultSubjectContext.class.getName() + ".SECURITY_MANAGER";
 
     private static final String SESSION_ID = DefaultSubjectContext.class.getName() + ".SESSION_ID";
@@ -57,7 +58,7 @@ public class DefaultSubjectContext extends MapContext implements SubjectContext 
     private static final String SUBJECT = DefaultSubjectContext.class.getName() + ".SUBJECT";
 
     private static final String PRINCIPALS = DefaultSubjectContext.class.getName() + ".PRINCIPALS";
-
+    // 保存Session的key
     private static final String SESSION = DefaultSubjectContext.class.getName() + ".SESSION";
 
     private static final String AUTHENTICATED = DefaultSubjectContext.class.getName() + ".AUTHENTICATED";
@@ -68,11 +69,13 @@ public class DefaultSubjectContext extends MapContext implements SubjectContext 
 
     /**
      * The session key that is used to store subject principals.
+     * session中保存 principals 的key
      */
     public static final String PRINCIPALS_SESSION_KEY = DefaultSubjectContext.class.getName() + "_PRINCIPALS_SESSION_KEY";
 
     /**
      * The session key that is used to store whether or not the user is authenticated.
+     * session中保存用户是否通过认证的key
      */
     public static final String AUTHENTICATED_SESSION_KEY = DefaultSubjectContext.class.getName() + "_AUTHENTICATED_SESSION_KEY";
 

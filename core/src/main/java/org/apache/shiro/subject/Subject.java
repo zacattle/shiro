@@ -54,7 +54,7 @@ import org.apache.shiro.subject.support.DefaultSubjectContext;
  * <p/>
  * These overloaded *Permission methods forgo type-safety for the benefit of convenience and simplicity,
  * so you should choose which ones to use based on your preferences and needs.
- * 主体（包含认证和权限信息）
+  * 主体（包含认证和权限信息）
  * @since 0.1
  */
 public interface Subject {

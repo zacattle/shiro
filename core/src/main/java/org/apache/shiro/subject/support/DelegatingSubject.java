@@ -65,8 +65,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Applications from large and clustered to simple and JVM-local all benefit from
  * stateless architectures.  This implementation plays a part in the stateless programming
  * paradigm and should be used whenever possible.
- *
- * @since 0.1
+ * Subject代理实现类，隐藏包含一个SecurityManager 实现Subject功能
+ * @since 0.1 
  */
 public class DelegatingSubject implements Subject {
 
@@ -74,7 +74,7 @@ public class DelegatingSubject implements Subject {
 
     private static final String RUN_AS_PRINCIPALS_SESSION_KEY =
             DelegatingSubject.class.getName() + ".RUN_AS_PRINCIPALS_SESSION_KEY";
-
+    // 身份信息集合
     protected PrincipalCollection principals;
     protected boolean authenticated;
     protected String host;
