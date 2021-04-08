@@ -62,7 +62,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * <p>To put it another way, the keys are the paths (urls) that this Filter will process.
      * <p>The values are filter-specific data that this Filter should use when processing the corresponding
      * key (path).  The values can be null if no Filter-specific config was specified for that url.
-     * 指定需要进行处理url路径的及配置的集合
+     * 指定需要进行处理url路径的及配置的映射集合
      */
     protected Map<String, Object> appliedPaths = new LinkedHashMap<String, Object>();
 
@@ -117,7 +117,7 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * <p/>
      * <code>String requestURI = {@link #getPathWithinApplication(javax.servlet.ServletRequest) getPathWithinApplication(request)};<br/>
      * return {@link #pathsMatch(String, String) pathsMatch(path,requestURI)}</code>
-     *
+     * 路径是否匹配当前过滤器
      * @param path    the configured url pattern to check the incoming request against.
      * @param request the incoming ServletRequest
      * @return <code>true</code> if the incoming <code>request</code> matches the specified <code>path</code> pattern,

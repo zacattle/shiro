@@ -128,12 +128,13 @@ public abstract class AuthenticatingFilter extends AuthenticationFilter {
 
     /**
      * Returns <code>true</code> if the mappedValue contains the {@link #PERMISSIVE} qualifier.
-     * 是否已通过权限验证
+     * 指定的url是否设置了{@link #PERMISSIVE}标识 表示放行的 不进行过滤
      * @return <code>true</code> if this filter should be permissive
      */
     protected boolean isPermissive(Object mappedValue) {
         if(mappedValue != null) {
             String[] values = (String[]) mappedValue;
+            // 二分法在已经排好序的数组中查找指定的元素
             return Arrays.binarySearch(values, PERMISSIVE) >= 0;
         }
         return false;

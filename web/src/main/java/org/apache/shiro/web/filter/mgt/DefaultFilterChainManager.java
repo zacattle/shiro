@@ -65,6 +65,7 @@ public class DefaultFilterChainManager implements FilterChainManager {
         this.filters = new LinkedHashMap<String, Filter>();
         this.filterChains = new LinkedHashMap<String, NamedFilterList>();
         setFilterConfig(filterConfig);
+        // 设置默认的过滤器，同时进行初始化
         addDefaultFilters(true);
     }
 

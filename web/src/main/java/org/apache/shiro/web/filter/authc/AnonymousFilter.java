@@ -18,10 +18,10 @@
  */
 package org.apache.shiro.web.filter.authc;
 
-import org.apache.shiro.web.filter.PathMatchingFilter;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
+import org.apache.shiro.web.filter.PathMatchingFilter;
 
 /**
  * Filter that allows access to a path immeidately without performing security checks of any kind.
@@ -46,7 +46,7 @@ import javax.servlet.ServletResponse;
  * <p/>
  * Since the url pattern definitions follow a 'first match wins' paradigm, the <code>anon</code> filter will
  * match the <code>/user/signup/**</code> paths and the <code>/user/**</code> path chain will not be evaluated.
- *
+ * 可匿名访问逻辑
  * @since 0.9
  */
 public class AnonymousFilter extends PathMatchingFilter {

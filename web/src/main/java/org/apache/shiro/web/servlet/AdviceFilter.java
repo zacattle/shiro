@@ -68,7 +68,7 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * an Exception.
      * <p/>
      * The default implementation does nothing (no-op) and exists as a template method for subclasses.
-     * 前缀执行方法，控制是否进行Filter过滤的逻辑
+     * 前缀执行方法，控制是否能够进行到Filter过滤的逻辑
      *
      * @param request  the incoming ServletRequest
      * @param response the outgoing ServletResponse
@@ -84,7 +84,7 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * cleanup if so desired.
      * <p/>
      * The default implementation does nothing (no-op) and exists as a template method for subclasses.
-     * 最终方法
+     * Filter逻辑执行完后回调的最终方法
      * @param request   the incoming ServletRequest
      * @param response  the outgoing ServletResponse
      * @param exception any exception thrown during {@link #preHandle preHandle}, {@link #executeChain executeChain},
@@ -160,7 +160,7 @@ public abstract class AdviceFilter extends OncePerRequestFilter {
      * {@link #afterCompletion(javax.servlet.ServletRequest, javax.servlet.ServletResponse, Exception) afterCompletion}
      * as well as handles any exceptions properly.
      * 
-     * 后缀方法，执行资源清理等操作
+     * 后置方法，执行资源清理等操作
      *
      * @param request  the incoming {@code ServletRequest}
      * @param response the outgoing {@code ServletResponse}

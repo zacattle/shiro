@@ -36,7 +36,7 @@ public interface FilterChainManager {
 
     /**
      * Returns the pool of available {@code Filter}s managed by this manager, keyed by {@code name}.
-     *
+     * 得到过滤器集合
      * @return the pool of available {@code Filter}s managed by this manager, keyed by {@code name}.
      */
     Map<String, Filter> getFilters();
@@ -60,7 +60,7 @@ public interface FilterChainManager {
 
     /**
      * Returns the names of all configured chains or an empty {@code Set} if no chains have been configured.
-     * 
+     * 过滤器链名字集合
      * @return the names of all configured chains or an empty {@code Set} if no chains have been configured.
      */
     Set<String> getChainNames();

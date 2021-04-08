@@ -18,11 +18,16 @@
  */
 package org.apache.shiro.spring.web;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.servlet.Filter;
+
 import org.apache.shiro.config.Ini;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.lang.util.Nameable;
 import org.apache.shiro.lang.util.StringUtils;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.web.config.IniFilterChainResolverFactory;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.filter.authc.AuthenticationFilter;
@@ -39,10 +44,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-
-import javax.servlet.Filter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * {@link org.springframework.beans.factory.FactoryBean FactoryBean} to be used in Spring-based web applications for
@@ -118,13 +119,14 @@ public class ShiroFilterFactoryBean implements FactoryBean, BeanPostProcessor {
     private static transient final Logger log = LoggerFactory.getLogger(ShiroFilterFactoryBean.class);
 
     private SecurityManager securityManager;
-
+    // 过滤器集合
     private Map<String, Filter> filters;
-
+    // 
     private Map<String, String> filterChainDefinitionMap; //urlPathExpression_to_comma-delimited-filter-chain-definition
-
+    // 登录url
     private String loginUrl;
     private String successUrl;
+    // 未通过授权url
     private String unauthorizedUrl;
 
     private AbstractShiroFilter instance;
@@ -367,7 +369,7 @@ public class ShiroFilterFactoryBean implements FactoryBean, BeanPostProcessor {
 
         DefaultFilterChainManager manager = new DefaultFilterChainManager();
         Map<String, Filter> defaultFilters = manager.getFilters();
-        //apply global settings if necessary:
+        //apply global settings if necessary: 设置全局属性
         for (Filter filter : defaultFilters.values()) {
             applyGlobalPropertiesIfNecessary(filter);
         }
@@ -384,6 +386,7 @@ public class ShiroFilterFactoryBean implements FactoryBean, BeanPostProcessor {
                 }
                 //'init' argument is false, since Spring-configured filters should be initialized
                 //in Spring (i.e. 'init-method=blah') or implement InitializingBean:
+                // 追加到默认的过滤器之后
                 manager.addFilter(name, filter, false);
             }
         }

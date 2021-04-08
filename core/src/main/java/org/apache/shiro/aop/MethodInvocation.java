@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 /**
  * 3rd-party API independent representation of a method invocation.  This is needed so Shiro can support other
  * MethodInvocation instances from other AOP frameworks/APIs.
- *
+ * 方法调用器
  * @since 0.1
  */
 public interface MethodInvocation {

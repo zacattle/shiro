@@ -31,7 +31,7 @@ import javax.servlet.ServletResponse;
  * definitions:  it allows arbitrary filter chains to be defined per URL in a much more concise and easy to read manner,
  * and even allows filter chains to be dynamically resolved or constructed at runtime if the underlying implementation
  * supports it.
- *
+ * FilterChain提供者
  * @since 1.0
  */
 public interface FilterChainResolver {

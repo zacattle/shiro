@@ -56,7 +56,7 @@ import org.apache.shiro.lang.util.StringUtils;
  *
  * <p>As per the Apache 2.0 license, the original copyright notice and all author and copyright information have
  * remained in tact.</p>
- *
+ * ant风格路径匹配器
  * @since 16.07.2003
  */
 public class AntPathMatcher implements PatternMatcher {
@@ -64,7 +64,7 @@ public class AntPathMatcher implements PatternMatcher {
     //TODO - complete JavaDoc
 
     /**
-     * Default path separator: "/"
+     * Default path separator: "/" 默认的路径分隔符
      */
     public static final String DEFAULT_PATH_SEPARATOR = "/";
 
@@ -102,7 +102,7 @@ public class AntPathMatcher implements PatternMatcher {
      *
      * @param pattern   the pattern to match against
      * @param path      the path String to test
-     * @param fullMatch whether a full pattern match is required
+     * @param fullMatch whether a full pattern match is required 是否需要完全匹配
      *                  (else a pattern match as far as the given base path goes is sufficient)
      * @return <code>true</code> if the supplied <code>path</code> matched,
      *         <code>false</code> if it didn't

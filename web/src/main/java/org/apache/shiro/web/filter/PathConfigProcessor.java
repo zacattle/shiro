@@ -22,7 +22,7 @@ import javax.servlet.Filter;
 
 /**
  * A PathConfigProcessor processes configuration entries on a per path (url) basis.
- * 表示对指定配置进行处理操作
+ * 表示对指定路径的配置进行处理逻辑接口
  * @since 0.9
  */
 public interface PathConfigProcessor {

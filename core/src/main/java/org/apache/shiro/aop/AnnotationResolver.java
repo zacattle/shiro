@@ -22,7 +22,7 @@ import java.lang.annotation.Annotation;
 
 /**
  * Defines an AOP-framework-independent way of determining if an Annotation exists on a Method.
- *
+ * 指定注解解析器
  * @since 1.1
  */
 public interface AnnotationResolver {

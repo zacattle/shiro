@@ -18,13 +18,13 @@
  */
 package org.apache.shiro.spring.aop;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+
 import org.apache.shiro.aop.AnnotationResolver;
 import org.apache.shiro.aop.MethodInvocation;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ClassUtils;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 
 /**
  * {@code AnnotationResolver} implementation that uses Spring's more robust
@@ -49,9 +49,10 @@ public class SpringAnnotationResolver implements AnnotationResolver {
         //implementation itself:
         Class<?> targetClass = mi.getThis().getClass();
         m = ClassUtils.getMostSpecificMethod(m, targetClass);
+        // spring中得到指定方法上的指定注解
         a = AnnotationUtils.findAnnotation(m, clazz);
         if (a != null) return a;
-        // See if the class has the same annotation
+        // See if the class has the same annotation 得到指定类上的指定注解
         return AnnotationUtils.findAnnotation(mi.getThis().getClass(), clazz);
     }
 }

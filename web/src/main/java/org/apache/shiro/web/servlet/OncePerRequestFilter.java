@@ -62,7 +62,7 @@ public abstract class OncePerRequestFilter extends NameableFilter {
 
     /**
      * Determines generally if this filter should execute or let requests fall through to the next chain element.
-     *
+     * 当前过滤器的状态 是否是启用状态
      * @see #isEnabled()
      */
     private boolean enabled = true; //most filters wish to execute when configured, so default to true

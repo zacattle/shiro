@@ -23,7 +23,7 @@ package org.apache.shiro.util;
  * <p/>
  * Different implementations can support different pattern types, for example, Ant style path expressions, or
  * regular expressions, or other types of text based patterns.
- *
+ * 路径匹配器
  * @see org.apache.shiro.lang.util.AntPathMatcher AntPathMatcher
  * @since 0.9 RC2
  */

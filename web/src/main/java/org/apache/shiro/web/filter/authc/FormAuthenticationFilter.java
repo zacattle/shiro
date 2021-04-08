@@ -52,7 +52,7 @@ import org.slf4j.LoggerFactory;
  * <p>If you would prefer to handle the authentication validation and login in your own code, consider using the
  * {@link PassThruAuthenticationFilter} instead, which allows requests to the
  * {@link #loginUrl} to pass through to your application's code directly.
- *
+ * 表单过滤器，实现需要登录逻辑，否则跳转至登录url
  * @see PassThruAuthenticationFilter
  * @since 0.9
  */

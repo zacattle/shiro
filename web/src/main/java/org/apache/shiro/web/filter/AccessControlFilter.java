@@ -41,6 +41,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
     /**
      * Simple default login URL equal to <code>/login.jsp</code>, which can be overridden by calling the
      * {@link #setLoginUrl(String) setLoginUrl} method.
+     * 默认的登录URL
      */
     public static final String DEFAULT_LOGIN_URL = "/login.jsp";
 
@@ -155,7 +156,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
      * {@link #isAccessAllowed(ServletRequest,ServletResponse,Object) isAccessAllowed(Request,Response,Object)},
      * otherwise returns the result of
      * {@link #onAccessDenied(ServletRequest,ServletResponse,Object) onAccessDenied(Request,Response,Object)}.
-     *
+     * 实现由以下两个方法实现对是否进行过滤的验证
      * @return <code>true</code> if
      *         {@link #isAccessAllowed(javax.servlet.ServletRequest, javax.servlet.ServletResponse, Object) isAccessAllowed},
      *         otherwise returns the result of
@@ -206,7 +207,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
      * If you need to save and then immediately redirect the user to login, consider using
      * {@link #saveRequestAndRedirectToLogin(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
      * saveRequestAndRedirectToLogin(request,response)} directly.
-     *
+     * 保存当前请求的状态，以备后续使用
      * @param request the incoming ServletRequest to save for re-use later (for example, after a redirect).
      */
     protected void saveRequest(ServletRequest request) {
@@ -222,7 +223,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
      * {@link #saveRequestAndRedirectToLogin(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
      * saveRequestAndRedirectToLogin(request,response)}, which will save the current request state so that it can
      * be reconstructed and re-used after a successful login.
-     *
+     * 重定向至登录url
      * @param request  the incoming <code>ServletRequest</code>
      * @param response the outgoing <code>ServletResponse</code>
      * @throws IOException if an error occurs.

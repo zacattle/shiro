@@ -18,16 +18,14 @@
  */
 package org.apache.shiro.spring;
 
+import org.apache.shiro.lang.util.Destroyable;
+import org.apache.shiro.lang.util.Initializable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor;
 import org.springframework.core.PriorityOrdered;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.apache.shiro.lang.util.Destroyable;
-import org.apache.shiro.lang.util.Initializable;
 
 
 /**
@@ -40,7 +38,7 @@ import org.apache.shiro.lang.util.Initializable;
  * <p><b>Warning: This post processor has no way to determine if <tt>init()</tt> or <tt>destroy()</tt> have
  * already been called, so if you define this post processor in your applicationContext, do not also call these
  * methods manually or via Spring's <tt>init-method</tt> or <tt>destroy-method</tt> bean attributes.</b></p>
- *
+ * 生命周期函数回调执行
  * @since 0.2
  */
 public class LifecycleBeanPostProcessor implements DestructionAwareBeanPostProcessor, PriorityOrdered {
