@@ -133,9 +133,9 @@ public interface PrincipalCollection extends Iterable, Serializable {
      * Collection if there are not any principals from that realm.
      * <p/>
      * Note that this will return an empty Collection if the 'owning' subject has not yet logged in.
-     * 返回指定realm得到的身份信息
+     * 返回指定realm得到的身份信息 存在多个realm返回多个身份信息的情况
      *
-     * @param realmName the name of the Realm from which the principals were retrieved.
+     * @param realmName the name of the Realm from which the principals were retrieved. realm的名字
      * @return the Subject's principals from the specified Realm only as a Collection or an empty Collection if there
      *         are not any principals from that realm.
      */

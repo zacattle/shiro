@@ -90,16 +90,16 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
     ============================================*/
     /**
      * The cache used by this realm to store AuthorizationInfo instances associated with individual Subject principals.
-     * 是否开启权限信息缓存
+     * 是否开启角色 权限信息缓存
      */
     private boolean authorizationCachingEnabled;
     // 权限信息缓存
     private Cache<Object, AuthorizationInfo> authorizationCache;
-    // 权限信息缓存名
+    // 权限信息cache缓存名
     private String authorizationCacheName;
-
+    // 权限解析器 通过string解析
     private PermissionResolver permissionResolver;
-
+    // 角色解析器
     private RolePermissionResolver permissionRoleResolver;
 
     /*-------------------------------------------

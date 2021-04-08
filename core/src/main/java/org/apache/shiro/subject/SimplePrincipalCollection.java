@@ -38,7 +38,7 @@ import org.apache.shiro.util.CollectionUtils;
 /**
  * A simple implementation of the {@link MutablePrincipalCollection} interface that tracks principals internally
  * by storing them in a {@link LinkedHashMap}.
- *
+ * 身份信息集合默认实现
  * @since 0.9
  */
 @SuppressWarnings({"unchecked"})
@@ -52,7 +52,7 @@ public class SimplePrincipalCollection implements MutablePrincipalCollection {
     private static final long serialVersionUID = -6305224034025797558L;
 
     //TODO - complete JavaDoc
-    // realm名-身份信息集合
+    // realm名-身份信息集合 Map
     private Map<String, Set> realmPrincipals;
 
     private transient String cachedToString; //cached toString() result, as this can be printed many times in logging

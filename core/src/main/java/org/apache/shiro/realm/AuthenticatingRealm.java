@@ -121,13 +121,14 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
 
     /**
      * The default suffix appended to the realm name used for caching authentication data.
-     * 
+     * 缓存身份信息 authentication的key值 即在CacheManager中得到Cache<Object, AuthenticationInfo>的值的key
      * @since 1.2
      */
     private static final String DEFAULT_AUTHENTICATION_CACHE_SUFFIX = ".authenticationCache";
 
     /**
      * Credentials matcher used to determine if the provided credentials match the credentials stored in the data store.
+     * 密码校验器 默认为 SimpleCredentialsMatcher
      */
     private CredentialsMatcher credentialsMatcher;
 
@@ -396,7 +397,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * @since 1.2
      */
     public final void init() {
-        //trigger obtaining the authorization cache if possible
+        //trigger obtaining the authorization cache if possible 得到authorization缓存信息 如果能
         getAvailableAuthenticationCache();
         onInit();
     }
@@ -404,7 +405,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
     /**
      * Template method for subclasses to implement any initialization logic.  Called from
      * {@link #init()}.
-     *
+     * 初始化方法
      * @since 1.2
      */
     protected void onInit() {
@@ -570,7 +571,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
 
         AuthenticationInfo info = getCachedAuthenticationInfo(token);
         if (info == null) {
-            //otherwise not cached, perform the lookup:
+            //otherwise not cached, perform the lookup: 缓存中不存在时，进行查找
             info = doGetAuthenticationInfo(token);
             log.debug("Looked up AuthenticationInfo [{}] from doGetAuthenticationInfo", info);
             if (token != null && info != null) {
@@ -581,7 +582,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
         }
 
         if (info != null) {
-        	// 验证密码 存在 记住我 的情况
+        	// 验证密码 存在 记住我 的情况 需要进行验证
             assertCredentialsMatch(token, info);
         } else {
             log.debug("No AuthenticationInfo found for submitted AuthenticationToken [{}].  Returning null.", token);
@@ -622,7 +623,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * <b>NOTE:</b> If you want to be able to invalidate an account's cached {@code AuthenticationInfo} on logout, you
      * must ensure the {@link #getAuthenticationCacheKey(org.apache.shiro.subject.PrincipalCollection)} method returns
      * the same value as this method.
-     *
+     * 得到缓存的key
      * @param token the authentication token for which any successful authentication will be cached.
      * @return the cache key to use to cache the associated {@link AuthenticationInfo} after a successful authentication.
      * @since 1.2

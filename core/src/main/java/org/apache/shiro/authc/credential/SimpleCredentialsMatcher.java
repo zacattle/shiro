@@ -104,6 +104,7 @@ public class SimpleCredentialsMatcher extends CodecSupport implements Credential
             }
             byte[] tokenBytes = toBytes(tokenCredentials);
             byte[] accountBytes = toBytes(accountCredentials);
+            // 比较字节数组是否相等
             return MessageDigest.isEqual(tokenBytes, accountBytes);
         } else {
             return accountCredentials.equals(tokenCredentials);
@@ -119,8 +120,8 @@ public class SimpleCredentialsMatcher extends CodecSupport implements Credential
      * comparison.
      * 验证认证信息过程
      *
-     * @param token the {@code AuthenticationToken} submitted during the authentication attempt.
-     * @param info  the {@code AuthenticationInfo} stored in the system matching the token principal.
+     * @param token the {@code AuthenticationToken} submitted during the authentication attempt. 待验证的用户名密码信息
+     * @param info  the {@code AuthenticationInfo} stored in the system matching the token principal.已存在的用户名密码信息
      * @return {@code true} if the provided token credentials are equal to the stored account credentials,
      *         {@code false} otherwise
      */
