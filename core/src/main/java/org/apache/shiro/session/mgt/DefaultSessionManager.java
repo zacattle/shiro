@@ -118,7 +118,7 @@ public class DefaultSessionManager extends AbstractValidatingSessionManager impl
      * Only set this value to {@code false} if you are manually going to delete sessions yourself by some process
      * (quartz, cron, etc) external to Shiro's control.  See the
      * {@link #isDeleteInvalidSessions() isDeleteInvalidSessions()} JavaDoc for more.
-     *
+     * 是否自动删除无效session,通常在是过期或已停止
      * @param deleteInvalidSessions whether or not sessions should be automatically deleted after they are discovered
      *                              to be invalid.
      * @since 1.0

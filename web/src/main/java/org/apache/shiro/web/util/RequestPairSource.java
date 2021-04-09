@@ -22,7 +22,7 @@ import javax.servlet.ServletResponse;
  * A {@code RequestPairSource} is a component that can supply a {@link ServletRequest ServletRequest} and
  * {@link ServletResponse ServletResponse} pair associated with a currently executing request.  This is used for
  * framework development support and is rarely used by end-users.
- *
+ * 包装一对ServletRequest和ServletResponse信息 针对一次请求
  * @since 1.0
  */
 public interface RequestPairSource {

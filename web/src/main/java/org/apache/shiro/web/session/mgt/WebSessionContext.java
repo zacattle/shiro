@@ -36,7 +36,7 @@ public interface WebSessionContext extends SessionContext, RequestPairSource {
     /**
      * Returns the {@code ServletRequest} received by the servlet container triggering the creation of the
      * {@code Session} instance.
-     *
+     * 得到request对象
      * @return the {@code ServletRequest} received by the servlet container triggering the creation of the
      *         {@code Session} instance.
      */
@@ -45,7 +45,7 @@ public interface WebSessionContext extends SessionContext, RequestPairSource {
     /**
      * Sets the {@code ServletRequest} received by the servlet container triggering the creation of the
      * {@code Session} instance.
-     *
+     * 设置request对象
      * @param request the {@code ServletRequest} received by the servlet container triggering the creation of the
      *                {@code Session} instance.
      */
