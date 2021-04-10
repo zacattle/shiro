@@ -76,7 +76,7 @@ public interface Permission {
      * <p>If &quot;permission1 implies permission2&quot;, i.e. <code>permission1.implies(permission2)</code> ,
      * then any Subject granted {@code permission1} would have ability greater than or equal to that defined by
      * {@code permission2}.
-     *
+     * 是否包含指定的权限范围
      * @param p the permission to check for behavior/functionality comparison.
      * @return {@code true} if this current instance <em>implies</em> all the functionality and/or resource access
      *         described by the specified {@code Permission} argument, {@code false} otherwise.

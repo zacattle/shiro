@@ -28,11 +28,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.SuppressPropertiesBeanIntrospector;
-import org.apache.shiro.lang.codec.Base64;
-import org.apache.shiro.lang.codec.Hex;
 import org.apache.shiro.config.ConfigurationException;
 import org.apache.shiro.config.ogdl.event.BeanEvent;
 import org.apache.shiro.config.ogdl.event.ConfiguredBeanEvent;
@@ -43,6 +42,8 @@ import org.apache.shiro.event.EventBus;
 import org.apache.shiro.event.EventBusAware;
 import org.apache.shiro.event.Subscribe;
 import org.apache.shiro.event.support.DefaultEventBus;
+import org.apache.shiro.lang.codec.Base64;
+import org.apache.shiro.lang.codec.Hex;
 import org.apache.shiro.lang.util.Assert;
 import org.apache.shiro.lang.util.ByteSource;
 import org.apache.shiro.lang.util.ClassUtils;
@@ -87,6 +88,7 @@ public class ReflectionBuilder {
 
     /**
      * Interpolation allows for ${key} substitution of values.
+     * 占位符解析器
      * @since 1.4
      */
     private Interpolator interpolator;

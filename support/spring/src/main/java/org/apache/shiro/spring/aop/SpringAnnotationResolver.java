@@ -31,7 +31,7 @@ import org.springframework.util.ClassUtils;
  * {@link AnnotationUtils AnnotationUtils} to find method annotations instead of the JDKs simpler
  * (and rather lacking) {@link Method}.{@link Method#getAnnotation(Class) getAnnotation(class)}
  * implementation.
- *
+ * 得到指定类型的注解解析器
  * @since 1.1
  */
 public class SpringAnnotationResolver implements AnnotationResolver {

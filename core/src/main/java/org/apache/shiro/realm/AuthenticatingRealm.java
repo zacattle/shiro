@@ -121,7 +121,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
 
     /**
      * The default suffix appended to the realm name used for caching authentication data.
-     * 缓存身份信息 authentication的key值 即在CacheManager中得到Cache<Object, AuthenticationInfo>的值的key
+     * 缓存身份信息 authentication的key值 即在CacheManager中得到Cache<Object, AuthenticationInfo>的值的key 的后缀
      * @since 1.2
      */
     private static final String DEFAULT_AUTHENTICATION_CACHE_SUFFIX = ".authenticationCache";
@@ -318,7 +318,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * {@link #setCacheManager(org.apache.shiro.cache.CacheManager) configured}, {@code false} otherwise.
      * <p/>
      * The default value is {@code true}.
-     *
+     * 开发缓存cachingEnabled同时开启权限缓存authenticationCachingEnabled
      * @return {@code true} if authentication caching should be utilized, {@code false} otherwise.
      */
     public boolean isAuthenticationCachingEnabled() {
@@ -347,6 +347,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
     public void setName(String name) {
         super.setName(name);
         String authcCacheName = this.authenticationCacheName;
+        // 如果是默认名字时
         if (authcCacheName != null && authcCacheName.startsWith(getClass().getName())) {
             //get rid of the default heuristically-created cache name.  Create a more meaningful one
             //based on the application-unique Realm name:
@@ -397,7 +398,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      * @since 1.2
      */
     public final void init() {
-        //trigger obtaining the authorization cache if possible 得到authorization缓存信息 如果能
+        //trigger obtaining the authorization cache if possible 得到权限authorization缓存信息 如果能
         getAvailableAuthenticationCache();
         onInit();
     }
@@ -418,6 +419,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
      */
     protected void afterCacheManagerSet() {
         //trigger obtaining the authorization cache if possible
+    	// 得到权限authorization缓存信息 如果能
         getAvailableAuthenticationCache();
     }
 
@@ -594,7 +596,7 @@ public abstract class AuthenticatingRealm extends CachingRealm implements Initia
     /**
      * Asserts that the submitted {@code AuthenticationToken}'s credentials match the stored account
      * {@code AuthenticationInfo}'s credentials, and if not, throws an {@link AuthenticationException}.
-     * 密码校验
+     * 密码校验 不能通过校验时 抛出异常
      * @param token the submitted authentication token
      * @param info  the AuthenticationInfo corresponding to the given {@code token}
      * @throws AuthenticationException if the token's credentials do not match the stored account credentials.

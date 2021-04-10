@@ -138,6 +138,7 @@ public class IniSecurityManagerFactory extends IniFactorySupport<SecurityManager
     @SuppressWarnings({"unchecked"})
     private SecurityManager createSecurityManager(Ini ini, Ini.Section mainSection) {
 
+    	// 默认创建DefaultSecurityManager和IniRealm
         getReflectionBuilder().setObjects(createDefaults(ini, mainSection));
         Map<String, ?> objects = buildInstances(mainSection);
 

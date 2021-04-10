@@ -41,6 +41,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
+// @ContextConfiguration 默认会在当前路径先寻找 类名-context.xml名字的配置文件执行加载
 public abstract class AbstractAuthorizationAnnotationTest {
 
     @Autowired

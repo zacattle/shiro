@@ -32,7 +32,7 @@ import org.apache.shiro.authz.annotation.RequiresUser;
  * me services before allowing access.
  * <p>
  * This annotation essentially ensures that <code>subject.{@link org.apache.shiro.subject.Subject#getPrincipal() getPrincipal()} != null</code>.
- *
+ * 用户注解处理器
  * @since 0.9.0
  */
 public class UserAnnotationHandler extends AuthorizingAnnotationHandler {

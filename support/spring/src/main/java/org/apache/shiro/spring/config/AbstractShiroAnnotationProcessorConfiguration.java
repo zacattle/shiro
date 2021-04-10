@@ -25,6 +25,7 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 
 /**
  * @since 1.4.0
+ * 
  */
 public class AbstractShiroAnnotationProcessorConfiguration {
 

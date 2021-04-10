@@ -55,6 +55,7 @@ import org.apache.shiro.subject.support.DefaultSubjectContext;
  * These overloaded *Permission methods forgo type-safety for the benefit of convenience and simplicity,
  * so you should choose which ones to use based on your preferences and needs.
   * 主体（包含认证和权限信息）
+  * 通常会包含进行认证和授权过程中用到一些信息，通过包含一个SecurityManager完成认证授权等操作，通过其他等
  * @since 0.1
  */
 public interface Subject {
@@ -602,7 +603,7 @@ public interface Subject {
      * {@link org.apache.shiro.SecurityUtils SecurityUtils}.{@link org.apache.shiro.SecurityUtils#getSubject() getSubject()}
      * will not automatically return the same instance as what is returned by the builder.  It is up to the framework
      * developer to bind the built {@code Subject} for continued use if desired.
-     *
+     * Subject构建器
      * @since 1.0
      */
     public static class Builder {
@@ -838,7 +839,7 @@ public interface Subject {
          * {@link org.apache.shiro.SecurityUtils SecurityUtils}.{@link org.apache.shiro.SecurityUtils#getSubject() getSubject()}
          * will not automatically return the same instance as what is returned by the builder.  It is up to the
          * framework developer to bind the returned {@code Subject} for continued use if desired.
-         *
+         * 创建Subject（委托securityManager实现）
          * @return a new {@code Subject} instance reflecting the cumulative state acquired by the
          *         other methods in this class.
          */

@@ -51,7 +51,7 @@ public class GuestAnnotationHandler extends AuthorizingAnnotationHandler {
      * have an {@link org.apache.shiro.subject.Subject#getPrincipal() identity} before continuing.  If they are
      * a user ({@link org.apache.shiro.subject.Subject#getPrincipal() Subject.getPrincipal()} != null), an
      * <code>AuthorizingException</code> will be thrown indicating that execution is not allowed to continue.
-     *
+     * 只能为游客状态
      * @param a the annotation to check for one or more roles
      * @throws org.apache.shiro.authz.AuthorizationException
      *          if the calling <code>Subject</code> is not a &quot;guest&quot;.

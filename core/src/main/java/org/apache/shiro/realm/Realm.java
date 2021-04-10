@@ -80,7 +80,7 @@ public interface Realm {
      * the token - more specifically, a <tt>false</tt> return value means this Realm instance's
      * {@link #getAuthenticationInfo} method will not be invoked for that token.
      * 
-     * 是否能对指定类型的认证信息进行认证
+     * 是否能对指定类型的认证信息AuthenticationToken进行认证
      *
      * @param token the AuthenticationToken submitted for the authentication attempt
      * @return <tt>true</tt> if this realm can/will authenticate Subjects represented by specified token,

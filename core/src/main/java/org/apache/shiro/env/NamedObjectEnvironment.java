@@ -20,7 +20,7 @@ package org.apache.shiro.env;
 
 /**
  * An environment that supports object lookup by name.
- *
+ * 添加通过指定名字得到配置的功能接口
  * @since 1.2
  */
 public interface NamedObjectEnvironment extends Environment {

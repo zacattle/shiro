@@ -18,19 +18,19 @@
  */
 package org.apache.shiro.util;
 
-import org.apache.shiro.authz.Permission;
-import org.apache.shiro.authz.permission.PermissionResolver;
-import org.apache.shiro.lang.util.StringUtils;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.authz.permission.PermissionResolver;
+import org.apache.shiro.lang.util.StringUtils;
+
 
 /**
  * Utility class to help with String-to-Permission object resolution.
- *
+ * string类型权限信息解析为Permission集合
  * @since 0.1
  */
 public class PermissionUtils {
@@ -41,6 +41,7 @@ public class PermissionUtils {
     }
 
     public static Set<String> toPermissionStrings(String permissionsString) {
+    	// 逗号分隔之后的单个权限字符串，比如user:create,user:update 会被分隔为2个字符串
         String[] tokens = StringUtils.split(permissionsString);
         if (tokens != null && tokens.length > 0) {
             return new LinkedHashSet<String>(Arrays.asList(tokens));

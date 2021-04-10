@@ -32,7 +32,7 @@ public interface CacheManagerAware {
 
     /**
      * Sets the available CacheManager instance on this component.
-     *
+     * 设置CacheManager
      * @param cacheManager the CacheManager instance to set on this component.
      */
     void setCacheManager(CacheManager cacheManager);

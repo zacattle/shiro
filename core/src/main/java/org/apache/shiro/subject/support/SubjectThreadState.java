@@ -18,13 +18,13 @@
  */
 package org.apache.shiro.subject.support;
 
+import java.util.Map;
+
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.util.ThreadContext;
 import org.apache.shiro.util.ThreadState;
-
-import java.util.Map;
 
 /**
  * Manages thread-state for {@link Subject Subject} access (supporting
@@ -83,6 +83,7 @@ public class SubjectThreadState implements ThreadState {
      * {@code SecurityUtils.}{@link org.apache.shiro.SecurityUtils#getSubject() getSubject()} calls that might occur
      * during the thread's execution.
      * <p/>
+     * 绑定Subject和SecurityManager到当前线程变量集合
      * Prior to binding, the {@code ThreadContext}'s existing {@link ThreadContext#getResources() resources} are
      * retained so they can be restored later via the {@link #restore restore} call.
      */

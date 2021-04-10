@@ -49,7 +49,7 @@ import org.apache.shiro.util.ThreadState;
  * An even more convenient alternative is to use a
  * {@link org.apache.shiro.concurrent.SubjectAwareExecutor SubjectAwareExecutor}, which transparently uses
  * instances of this class but does not require referencing Shiro's API at all.
- *
+ * 线程运行时，绑定相关的数据到线程变量
  * @see Subject#associateWith(Runnable)
  * @see org.apache.shiro.concurrent.SubjectAwareExecutor SubjectAwareExecutor
  * @since 1.0

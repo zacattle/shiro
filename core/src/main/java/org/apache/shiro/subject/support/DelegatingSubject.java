@@ -18,12 +18,18 @@
  */
 package org.apache.shiro.subject.support;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.HostAuthenticationToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.lang.util.StringUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.ProxiedSession;
@@ -35,14 +41,8 @@ import org.apache.shiro.subject.ExecutionException;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.lang.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Implementation of the {@code Subject} interface that delegates
@@ -71,16 +71,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class DelegatingSubject implements Subject {
 
     private static final Logger log = LoggerFactory.getLogger(DelegatingSubject.class);
-
+    // 存储run as身份信息
     private static final String RUN_AS_PRINCIPALS_SESSION_KEY =
             DelegatingSubject.class.getName() + ".RUN_AS_PRINCIPALS_SESSION_KEY";
     // 身份信息集合
     protected PrincipalCollection principals;
+    //
     protected boolean authenticated;
+    // 
     protected String host;
+    // session回话对象
     protected Session session;
     /**
      * @since 1.2
+     * 是否自动创建session(不存在时)
      */
     protected boolean sessionCreationEnabled;
 
@@ -106,6 +110,7 @@ public class DelegatingSubject implements Subject {
         this.authenticated = authenticated;
         this.host = host;
         if (session != null) {
+        	// 包装一个session对象，添加额外操作
             this.session = decorate(session);
         }
         this.sessionCreationEnabled = sessionCreationEnabled;
@@ -410,6 +415,10 @@ public class DelegatingSubject implements Subject {
         return new SubjectRunnable(this, runnable);
     }
 
+    /**
+     * @author zacattle
+     * 覆盖stop方法，实现同时停止Subject中的session
+     */
     private class StoppingAwareProxiedSession extends ProxiedSession {
 
         private final DelegatingSubject owner;
@@ -427,7 +436,7 @@ public class DelegatingSubject implements Subject {
 
 
     // ======================================
-    // 'Run As' support implementations
+    // 'Run As' support implementations  'Run As'相关方法
     // ======================================
 
     public void runAs(PrincipalCollection principals) {
@@ -441,6 +450,10 @@ public class DelegatingSubject implements Subject {
         pushIdentity(principals);
     }
 
+    /* (non-Javadoc)
+     * 是否是 RunAs 模式
+     * @see org.apache.shiro.subject.Subject#isRunAs()
+     */
     public boolean isRunAs() {
         List<PrincipalCollection> stack = getRunAsPrincipalsStack();
         return !CollectionUtils.isEmpty(stack);

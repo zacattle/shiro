@@ -30,7 +30,7 @@ import org.apache.shiro.mgt.SecurityManager;
  * <p/>
  * For example, the most obvious component accessible via an {@code Environment} instance is the application's
  * {@link #getSecurityManager() securityManager}.
- *
+ * 环境配置功能接口
  * @since 1.2
  */
 public interface Environment {

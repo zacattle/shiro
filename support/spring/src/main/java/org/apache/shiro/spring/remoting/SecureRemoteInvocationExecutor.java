@@ -18,6 +18,10 @@
  */
 package org.apache.shiro.spring.remoting;
 
+import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.Callable;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.ExecutionException;
@@ -26,10 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.remoting.support.DefaultRemoteInvocationExecutor;
 import org.springframework.remoting.support.RemoteInvocation;
-
-import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.Callable;
 
 
 /**
@@ -103,6 +103,8 @@ public class SecureRemoteInvocationExecutor extends DefaultRemoteInvocationExecu
             Subject subject = builder.buildSubject();
             return subject.execute(new Callable() {
                 public Object call() throws Exception {
+                	// 当前实例为SecureRemoteInvocationExecutor实例，同时该实例覆盖了父类的invoke方法，同时需要在内部类中调用父类方法时，需要使用以下形式
+                	// 
                     return SecureRemoteInvocationExecutor.super.invoke(invocation, targetObject);
                 }
             });

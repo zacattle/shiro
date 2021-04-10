@@ -28,7 +28,7 @@ import java.util.Date;
  * <p/>
  * This class is mostly useful for framework subclassing to intercept certain <code>Session</code> calls
  * and perform additional logic.
- * 简单代理session，包装一个Session实例 实现session功能
+ * 简单代理session，包装一个Session实例 来实现session功能，通常用于框架内部实现一个session调用的同时，添加一些额外的操作
  * @since 0.9
  */
 public class ProxiedSession implements Session {
@@ -41,7 +41,7 @@ public class ProxiedSession implements Session {
     /**
      * Constructs an instance that proxies the specified <code>target</code>.  Subclasses may access this
      * target via the <code>protected final 'delegate'</code> attribute, i.e. <code>this.delegate</code>.
-     *
+     * 代理一个Session
      * @param target the specified target <code>Session</code> to proxy.
      */
     public ProxiedSession(Session target) {

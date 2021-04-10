@@ -37,7 +37,7 @@ package org.apache.shiro.util;
  *     state.restore();
  * }</b>
  * </pre>
- *
+ * 线程运行需要绑定或者解绑数据的功能接口
  * @since 1.0
  */
 public interface ThreadState {
@@ -55,6 +55,7 @@ public interface ThreadState {
      *     state.restore();
      * }
      * </pre>
+     *绑定数据
      */
     void bind();
 
@@ -71,6 +72,7 @@ public interface ThreadState {
      *     state.restore();
      * }</b>
      * </pre>
+     * 释放
      */
     void restore();
 
@@ -78,6 +80,7 @@ public interface ThreadState {
      * Completely clears/removes the {@code ThreadContext} state.  Typically this method should
      * only be called in special cases - it is more 'correct' to {@link #restore restore} a thread to its previous
      * state than to clear it entirely.
+     * 清除
      */
     void clear();
 

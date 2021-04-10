@@ -18,16 +18,16 @@
  */
 package org.apache.shiro.web.env;
 
+import javax.servlet.ServletContext;
+
 import org.apache.shiro.web.filter.mgt.FilterChainResolver;
 import org.apache.shiro.web.mgt.WebSecurityManager;
-
-import javax.servlet.ServletContext;
 
 /**
  * A {@code WebEnvironment} that supports 'write' operations operations.  This mainly exists to shield
  * {@code WebEnvironment} API consumers from modification operations, which are mostly only used during Shiro
  * environment initialization.
- *
+ * 添加变量赋值功能接口
  * @since 1.2
  */
 public interface MutableWebEnvironment extends WebEnvironment {

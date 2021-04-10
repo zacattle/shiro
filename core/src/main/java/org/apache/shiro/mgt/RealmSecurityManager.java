@@ -55,7 +55,7 @@ public abstract class RealmSecurityManager extends CachingSecurityManager {
     /**
      * Convenience method for applications using a single realm that merely wraps the realm in a list and then invokes
      * the {@link #setRealms} method.
-     *
+     * 设置单个Realm方法 只存在一个Realm时可直接进行设置
      * @param realm the realm to set for a single-realm application.
      * @since 0.2
      */

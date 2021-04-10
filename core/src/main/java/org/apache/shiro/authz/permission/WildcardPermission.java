@@ -18,15 +18,15 @@
  */
 package org.apache.shiro.authz.permission;
 
-import org.apache.shiro.authz.Permission;
-import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.lang.util.StringUtils;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.lang.util.StringUtils;
+import org.apache.shiro.util.CollectionUtils;
 
 /**
  * A <code>WildcardPermission</code> is a very flexible permission construct supporting multiple levels of
@@ -100,7 +100,7 @@ import java.util.Set;
  * There is no limit to the number of tokens that can be used, so it is up to your imagination in terms of ways that
  * this could be used in your application.  However, the Shiro team likes to standardize some common usages shown
  * above to help people get started and provide consistency in the Shiro community.
- *
+ * 通配符类型权限
  * @since 0.9
  */
 public class WildcardPermission implements Permission, Serializable {
@@ -157,7 +157,7 @@ public class WildcardPermission implements Permission, Serializable {
         if (!caseSensitive) {
             wildcardString = wildcardString.toLowerCase();
         }
-
+        // 冒号分隔
         List<String> parts = CollectionUtils.asList(wildcardString.split(PART_DIVIDER_TOKEN));
 
         this.parts = new ArrayList<Set<String>>();

@@ -18,19 +18,18 @@
  */
 package org.apache.shiro.authz.aop;
 
+import java.lang.annotation.Annotation;
+
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
-
-import java.lang.annotation.Annotation;
 
 /**
  * Checks to see if a @{@link org.apache.shiro.authz.annotation.RequiresPermissions RequiresPermissions} annotation is
  * declared, and if so, performs a permission check to see if the calling <code>Subject</code> is allowed continued
  * access.
- *
+ * 权限注解处理器
  * @since 0.9.0
  */
 public class PermissionAnnotationHandler extends AuthorizingAnnotationHandler {

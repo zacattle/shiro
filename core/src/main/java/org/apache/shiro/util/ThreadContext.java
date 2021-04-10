@@ -49,11 +49,11 @@ public abstract class ThreadContext {
      * Private internal log instance.
      */
     private static final Logger log = LoggerFactory.getLogger(ThreadContext.class);
-    // 存储 SecurityManager 的key
+    // 静态属性 存储 SecurityManager 的key
     public static final String SECURITY_MANAGER_KEY = ThreadContext.class.getName() + "_SECURITY_MANAGER_KEY";
-    // 存储 Subject 的key
+    // 静态属性 存储 Subject 的key
     public static final String SUBJECT_KEY = ThreadContext.class.getName() + "_SUBJECT_KEY";
-
+    // 静态集合属性 数据集合
     private static final ThreadLocal<Map<Object, Object>> resources = new InheritableThreadLocalMap<Map<Object, Object>>();
 
     /**
@@ -80,7 +80,7 @@ public abstract class ThreadContext {
      * Allows a caller to explicitly set the entire resource map.  This operation overwrites everything that existed
      * previously in the ThreadContext - if you need to retain what was on the thread prior to calling this method,
      * call the {@link #getResources()} method, which will give you the existing state.
-     *
+     * 设置数据集合
      * @param newResources the resources to replace the existing {@link #getResources() resources}.
      * @since 1.0
      */
@@ -88,6 +88,7 @@ public abstract class ThreadContext {
         if (CollectionUtils.isEmpty(newResources)) {
             return;
         }
+        // 确认初始化
         ensureResourcesInitialized();
         resources.get().clear();
         resources.get().putAll(newResources);
@@ -96,7 +97,7 @@ public abstract class ThreadContext {
     /**
      * Returns the value bound in the {@code ThreadContext} under the specified {@code key}, or {@code null} if there
      * is no value for that {@code key}.
-     *
+     * 得到指定的值 private方法 内部使用
      * @param key the map key to use to lookup the value
      * @return the value bound in the {@code ThreadContext} under the specified {@code key}, or {@code null} if there
      *         is no value for that {@code key}.
@@ -108,7 +109,7 @@ public abstract class ThreadContext {
     }
 
     /**
-     * 重置当前线程信息
+     * 初始化当前线程信息
      */
     private static void ensureResourcesInitialized(){
         if (resources.get() == null){
@@ -119,7 +120,7 @@ public abstract class ThreadContext {
     /**
      * Returns the object for the specified <code>key</code> that is bound to
      * the current thread.
-     *
+     * 得到指定的值
      * @param key the key that identifies the value to return
      * @return the object keyed by <code>key</code> or <code>null</code> if
      *         no value exists for the specified <code>key</code>
@@ -149,7 +150,7 @@ public abstract class ThreadContext {
      * if ( value == null ) {
      *     remove( key );
      * }</pre>
-     *
+     *设置指定的值
      * @param key   The key with which to identify the <code>value</code>.
      * @param value The value to bind to the thread.
      * @throws IllegalArgumentException if the <code>key</code> argument is <tt>null</tt>.
@@ -200,7 +201,7 @@ public abstract class ThreadContext {
      * <p/>
      * This method is meant to be the final 'clean up' operation that is called at the end of thread execution to
      * prevent thread corruption in pooled thread environments.
-     *
+     *清空数据集合
      * @since 1.0
      */
     public static void remove() {
@@ -218,7 +219,7 @@ public abstract class ThreadContext {
      * <p/>
      * This method only returns the bound value if it exists - it does not remove it
      * from the thread.  To remove it, one must call {@link #unbindSecurityManager() unbindSecurityManager()} instead.
-     *
+     *静态方法 得到SecurityManager
      * @return the Subject object bound to the thread, or <tt>null</tt> if there isn't one bound.
      * @since 0.9
      */
@@ -238,7 +239,7 @@ public abstract class ThreadContext {
      * if (securityManager != null) {
      *     put( SECURITY_MANAGER_KEY, securityManager);
      * }</pre>
-     *
+     *设置SecurityManager值
      * @param securityManager the application's SecurityManager instance to bind to the thread.  If the argument is
      *                        null, nothing will be done.
      * @since 0.9
@@ -259,7 +260,7 @@ public abstract class ThreadContext {
      * <p/>
      * If you wish to just retrieve the object from the thread without removing it (so it can be retrieved later
      * during thread execution), use the {@link #getSecurityManager() getSecurityManager()} method instead.
-     *
+     *移除SecurityManager值
      * @return the application's SecurityManager instance previously bound to the thread, or <tt>null</tt> if there
      *         was none bound.
      * @since 0.9
@@ -277,7 +278,7 @@ public abstract class ThreadContext {
      * <p/>
      * This method only returns the bound value if it exists - it does not remove it
      * from the thread.  To remove it, one must call {@link #unbindSubject() unbindSubject()} instead.
-     *
+     *得到Subject值
      * @return the Subject object bound to the thread, or <tt>null</tt> if there isn't one bound.
      * @since 0.2
      */
@@ -297,7 +298,7 @@ public abstract class ThreadContext {
      * if (subject != null) {
      *     put( SUBJECT_KEY, subject );
      * }</pre>
-     *
+     *设置Subject值
      * @param subject the Subject object to bind to the thread.  If the argument is null, nothing will be done.
      * @since 0.2
      */
@@ -317,7 +318,7 @@ public abstract class ThreadContext {
      * <p/>
      * If you wish to just retrieve the object from the thread without removing it (so it can be retrieved later during
      * thread execution), you should use the {@link #getSubject() getSubject()} method for that purpose.
-     *
+     *移除Subject值
      * @return the Subject object previously bound to the thread, or <tt>null</tt> if there was none bound.
      * @since 0.2
      */
@@ -325,6 +326,11 @@ public abstract class ThreadContext {
         return (Subject) remove(SUBJECT_KEY);
     }
     
+    /**
+     * @author zacattle
+     *子线程得到的克隆值
+     * @param <T>
+     */
     private static final class InheritableThreadLocalMap<T extends Map<Object, Object>> extends InheritableThreadLocal<Map<Object, Object>> {
 
         /**

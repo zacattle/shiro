@@ -73,6 +73,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
      */
     public CachingRealm() {
         this.cachingEnabled = true;
+        // 默认名字生成
         this.name = getClass().getName() + "_" + INSTANCE_COUNT.getAndIncrement();
     }
 
@@ -117,7 +118,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
     /**
      * Sets whether or not caching should be used if a {@link CacheManager} has been
      * {@link #setCacheManager(org.apache.shiro.cache.CacheManager) configured}.
-     *
+     * 是否开启缓存
      * @param cachingEnabled whether or not to globally enable caching for this realm.
      */
     public void setCachingEnabled(boolean cachingEnabled) {
@@ -136,6 +137,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
      * Template method that may be implemented by subclasses should they wish to react to a
      * {@link CacheManager} instance being set on the realm instance via the
      * {@link #setCacheManager(org.apache.shiro.cache.CacheManager)} mutator.
+     * 模板方法 缓存处理器被设置后 的后置处理方法
      */
     protected void afterCacheManagerSet() {
     }
@@ -145,7 +147,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
      * Subclasses are free to override for additional behavior, but be sure to call {@code super.onLogout} first.
      * <p/>
      * This default implementation merely calls {@link #clearCache(org.apache.shiro.subject.PrincipalCollection)}.
-     *
+     * 生命周期函数实现 退出时回调
      * @param principals the application-specific Subject/user identifier that is logging out.
      * @see #clearCache(org.apache.shiro.subject.PrincipalCollection)
      * @see #getAvailablePrincipal(org.apache.shiro.subject.PrincipalCollection)
@@ -155,6 +157,9 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
         clearCache(principals);
     }
 
+    /**
+     * 是否存在身份信息
+     */
     private static boolean isEmpty(PrincipalCollection pc) {
         return pc == null || pc.isEmpty();
     }
@@ -164,7 +169,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
      * <p/>
      * This implementation will return quietly if the principals argument is null or empty.  Otherwise it delegates
      * to {@link #doClearCache(org.apache.shiro.subject.PrincipalCollection)}.
-     *
+     * 清空缓存
      * @param principals the principals of the account for which to clear any cached data.
      * @since 1.2
      */
@@ -177,7 +182,7 @@ public abstract class CachingRealm implements Realm, Nameable, CacheManagerAware
 
     /**
      * This implementation does nothing - it is a template to be overridden by subclasses if necessary.
-     * 清除缓存
+     * 清除缓存 预留方法
      * @param principals principals the principals of the account for which to clear any cached data.
      * @since 1.2
      */
